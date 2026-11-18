@@ -1,0 +1,39 @@
+.text-roll {
+  white-space: inherit;
+}
+
+.text-roll-letter {
+  position: relative;
+  display: inline-block;
+  perspective: 10000px;
+  transform-style: preserve-3d;
+}
+
+.text-roll-face {
+  position: absolute;
+  display: inline-block;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.text-roll-face-enter {
+  transform-origin: 50% 25%;
+}
+
+.text-roll-face-exit {
+  transform-origin: 50% 100%;
+}
+
+.text-roll-measure {
+  visibility: hidden;
+}
+
+.text-roll-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}

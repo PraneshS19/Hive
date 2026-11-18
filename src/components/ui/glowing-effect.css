@@ -1,0 +1,30 @@
+.glowing-effect-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  padding: 1px;
+  background: conic-gradient(
+    from calc(var(--glow-angle, 0deg) - 22deg),
+    transparent 0deg,
+    rgba(75, 127, 189, 0.20) 10deg,
+    rgba(142, 173, 212, 0.45) 20deg,
+    rgba(75, 127, 189, 0.25) 30deg,
+    transparent 44deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glowing-effect-overlay {
+    display: none !important;
+  }
+}

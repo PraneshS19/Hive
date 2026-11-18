@@ -1,0 +1,983 @@
+/* ==========================================================================
+   SYNQ SOFT PRECISION — COMPLETE NEUMORPHIC DESIGN SYSTEM
+   Product: SYNQ | Tagline: Analyze. Evaluate. Evolve.
+   Design Reference: Neumorphism.io (#e0e0e0 / #E0E5EC)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. GLOBAL CANVAS & FOUNDATIONS
+ * -------------------------------------------------------------------------- */
+:root {
+  --neu-bg: #E0E5EC;
+  --neu-bg-alt: #E6EBF2;
+  --neu-surface: #E0E5EC;
+  --neu-surface-inset: #DDE3EB;
+  --neu-surface-light: #E8EDF4;
+
+  --neu-text-primary: #0B1730;
+  --neu-text-secondary: #43526C;
+  --neu-text-muted: #61718B;
+  --neu-text-disabled: #748096;
+
+  --neu-navy-deep: #0B1730;
+  --neu-navy: #0E1C3D;
+  --neu-navy-mid: #1B3A6B;
+  --neu-blue: #477CB9;
+  --neu-blue-light: #8EADD4;
+
+  --neu-success: #168568;
+  --neu-warning: #A96B15;
+  --neu-critical: #C13F50;
+  --neu-info: #326EAA;
+
+  /* Neumorphic Dual Opposing Shadows (Light from Top-Left, Dark to Bottom-Right) */
+  --neu-shadow-raised: 8px 8px 16px #BEC5CE, -8px -8px 16px #FFFFFF;
+  --neu-shadow-raised-sm: 4px 4px 9px #BEC5CE, -4px -4px 9px #FFFFFF;
+  --neu-shadow-raised-xs: 2px 2px 5px #BEC5CE, -2px -2px 5px #FFFFFF;
+  --neu-shadow-inset: inset 4px 4px 9px #BEC5CE, inset -4px -4px 9px #FFFFFF;
+  --neu-shadow-inset-sm: inset 2px 2px 5px #BEC5CE, inset -2px -2px 5px #FFFFFF;
+  --neu-shadow-hover: 10px 10px 20px #BEC5CE, -10px -10px 20px #FFFFFF;
+  --neu-shadow-pressed: inset 3px 3px 6px #BEC5CE, inset -3px -3px 6px #FFFFFF;
+  --neu-shadow-modal: 16px 16px 36px #B8C0CA, -16px -16px 36px #FFFFFF;
+
+  --neu-border-subtle: 1px solid rgba(255, 255, 255, 0.7);
+  --neu-border-control: 1px solid rgba(190, 197, 206, 0.55);
+
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --neu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --neu-duration-micro: 160ms;
+}
+
+html,
+body,
+#root {
+  background-color: var(--neu-bg, #E0E5EC) !important;
+  background-image: none !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  font-family: var(--font-family-sans) !important;
+}
+
+.app {
+  background: var(--neu-bg, #E0E5EC) !important;
+  background-image: none !important;
+  min-height: 100vh;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Hide glowing effect overlay to maintain pure matte neumorphic aesthetic */
+.glowing-effect-overlay {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. TOP DOCK NAVIGATION & APP HEADER
+ * -------------------------------------------------------------------------- */
+.app > .sidebar {
+  position: sticky !important;
+  inset: 0 0 auto !important;
+  z-index: 30;
+  width: 100% !important;
+  min-height: 74px;
+  padding: 12px clamp(16px, 3vw, 40px) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: clamp(12px, 2vw, 24px);
+  background: var(--neu-bg, #E0E5EC) !important;
+  border-right: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: 0 6px 16px rgba(163, 174, 189, 0.35) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+@media (max-width: 600px) {
+  .app > .sidebar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 8px 10px !important;
+    padding: 10px 12px !important;
+    min-height: auto !important;
+  }
+  .app > .sidebar > .brand {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  .app > .sidebar > .side-bottom {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+  }
+  .app > .sidebar > .home-link {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    font-size: 0 !important;
+    padding: 8px 10px !important;
+  }
+  .app > .sidebar > nav {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding: 4px 6px !important;
+    margin: 0 !important;
+  }
+  .app > .sidebar > nav button {
+    flex: 0 0 auto !important;
+    padding: 8px 12px !important;
+    min-height: 38px !important;
+  }
+}
+
+.app > .sidebar > .brand {
+  order: 1;
+  flex: 0 0 auto;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app > .sidebar > .brand b {
+  color: var(--neu-navy-deep, #0B1730) !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app > .sidebar > .brand small {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.app > .sidebar > .brand .mark {
+  background: var(--neu-navy-deep, #0B1730) !important;
+  color: #FFFFFF !important;
+  box-shadow: var(--neu-shadow-raised-xs) !important;
+  border-radius: 9px;
+}
+
+/* Recessed Inset Navigation Dock Tray */
+.app > .sidebar > nav {
+  order: 2;
+  display: flex !important;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-inline: auto;
+  padding: 5px 8px;
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 20px !important;
+  backdrop-filter: none !important;
+}
+
+.app > .sidebar > nav button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 14px !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.app > .sidebar > nav button svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+
+.app > .sidebar > nav button:hover {
+  color: var(--neu-text-primary, #0B1730) !important;
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised-xs) !important;
+  transform: translateY(-1px);
+}
+
+/* Active Nav Button: Tactile Raised Neumorphic Surface */
+.app > .sidebar > nav button.active {
+  background: var(--neu-bg, #E0E5EC) !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  font-weight: 650 !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  transform: none !important;
+}
+
+.app > .sidebar > nav button:active {
+  box-shadow: var(--neu-shadow-pressed) !important;
+  transform: scale(0.985);
+}
+
+/* Back to Home & Settings Triggers */
+.app > .sidebar > .home-link,
+.app > .sidebar .side-bottom > button,
+.app > .sidebar .settings-trigger {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 14px !important;
+  background: var(--neu-bg, #E0E5EC) !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  cursor: pointer;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.app > .sidebar > .home-link:hover,
+.app > .sidebar .settings-trigger:hover {
+  box-shadow: var(--neu-shadow-hover) !important;
+  transform: translateY(-1px);
+  color: var(--neu-blue, #477CB9) !important;
+}
+
+.app > .sidebar > .home-link:active,
+.app > .sidebar .settings-trigger:active,
+.app > .sidebar .settings-trigger[aria-expanded="true"] {
+  box-shadow: var(--neu-shadow-pressed) !important;
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  transform: scale(0.985);
+}
+
+/* --------------------------------------------------------------------------
+ * 3. TOPBAR & PAGE HEADERS
+ * -------------------------------------------------------------------------- */
+.topbar {
+  min-height: 84px;
+  padding: 18px clamp(16px, 3vw, 40px) !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(190, 197, 206, 0.35) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.topbar h1 {
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  margin: 0 0 4px !important;
+}
+
+.topbar p {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+.data-badge,
+.ready {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  background: var(--neu-bg, #E0E5EC) !important;
+  color: var(--neu-text-secondary, #43526C) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: var(--neu-shadow-raised-xs) !important;
+  border-radius: 9999px !important;
+  padding: 6px 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+.ready.online {
+  color: var(--neu-success, #168568) !important;
+}
+
+.ready .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--neu-success, #168568) !important;
+  box-shadow: 0 0 6px rgba(22, 133, 104, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. REUSABLE NEUMORPHIC CARDS & METRIC TILES
+ * -------------------------------------------------------------------------- */
+.card,
+.portfolio-risk-card,
+.portfolio-order-ledger-card,
+.dataset-meta-card,
+.trade-ledger-card,
+.activity-panel {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--neu-shadow-raised) !important;
+  border-radius: 20px !important;
+  padding: 22px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: box-shadow var(--neu-duration-micro) var(--neu-ease), transform var(--neu-duration-micro) var(--neu-ease);
+}
+
+.card-title h2 {
+  font-size: 1.0625rem !important;
+  font-weight: 650 !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  letter-spacing: -0.015em;
+  margin: 0 0 4px;
+}
+
+.eyebrow,
+.paper-proposals-eyebrow {
+  color: var(--neu-blue, #477CB9) !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* Metric Cards */
+.metrics {
+  gap: 16px !important;
+  margin-bottom: 22px !important;
+}
+
+.metric {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border-radius: 16px !important;
+  padding: 18px 20px !important;
+  backdrop-filter: none !important;
+}
+
+.metric p {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase;
+  margin: 0 !important;
+}
+
+.metric strong {
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  letter-spacing: -0.03em !important;
+  margin: 8px 0 4px !important;
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric small {
+  color: var(--neu-text-muted, #61718B) !important;
+  font-size: 11px !important;
+}
+
+.up {
+  color: var(--neu-success, #168568) !important;
+}
+
+.down {
+  color: var(--neu-critical, #C13F50) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. NEUMORPHIC BUTTONS
+ * -------------------------------------------------------------------------- */
+.primary,
+.launch,
+.review-run-btn,
+.btn-benchmark,
+.btn-approve,
+.order-confirm-btn {
+  background: var(--neu-navy-deep, #0B1730) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 4px 4px 10px #B8C0CA, -4px -4px 10px #FFFFFF !important;
+  border-radius: 14px !important;
+  padding: 10px 18px !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.primary:hover,
+.launch:hover,
+.review-run-btn:hover,
+.btn-benchmark:hover,
+.btn-approve:hover,
+.order-confirm-btn:hover {
+  background: var(--neu-navy-mid, #1B3A6B) !important;
+  box-shadow: 6px 6px 14px #B8C0CA, -6px -6px 14px #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.primary:active,
+.launch:active,
+.review-run-btn:active,
+.btn-benchmark:active,
+.btn-approve:active,
+.order-confirm-btn:active {
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(0.985);
+}
+
+.primary:disabled,
+.launch:disabled,
+.review-run-btn:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.secondary,
+.icon-button,
+.btn-secondary,
+.review-reset-btn {
+  background: var(--neu-bg, #E0E5EC) !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border-radius: 12px !important;
+  padding: 9px 15px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.secondary:hover,
+.icon-button:hover,
+.btn-secondary:hover,
+.review-reset-btn:hover {
+  box-shadow: var(--neu-shadow-hover) !important;
+  transform: translateY(-1px);
+}
+
+.secondary:active,
+.icon-button:active,
+.btn-secondary:active,
+.review-reset-btn:active {
+  box-shadow: var(--neu-shadow-pressed) !important;
+  transform: scale(0.985);
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center;
+}
+
+.danger,
+.btn-reject {
+  background: var(--neu-critical, #C13F50) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 4px 4px 10px #BEC5CE, -4px -4px 10px #FFFFFF !important;
+  border-radius: 12px !important;
+  padding: 9px 16px !important;
+  font-weight: 650 !important;
+  cursor: pointer;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.danger:hover,
+.btn-reject:hover {
+  background: #A83342 !important;
+  box-shadow: 6px 6px 14px #BEC5CE, -6px -6px 14px #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.danger:active,
+.btn-reject:active {
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(0.985);
+}
+
+/* --------------------------------------------------------------------------
+ * 6. INSET CONTROLS & FORMS
+ * -------------------------------------------------------------------------- */
+input[type="text"],
+input[type="number"],
+input[type="search"],
+select,
+textarea,
+.setting input,
+.backtest-controls input,
+.backtest-controls select,
+.review-trigger-panel input,
+.review-trigger-panel select,
+.review-trigger-panel textarea {
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  border: 1px solid rgba(190, 197, 206, 0.6) !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border-radius: 12px !important;
+  padding: 9px 13px !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  outline: none;
+  transition: border-color var(--neu-duration-micro) var(--neu-ease), box-shadow var(--neu-duration-micro) var(--neu-ease);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--neu-blue, #477CB9) !important;
+  box-shadow: var(--neu-shadow-inset), 0 0 0 2px rgba(71, 124, 185, 0.25) !important;
+}
+
+input[type="range"] {
+  accent-color: var(--neu-blue, #477CB9) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 7. SEGMENTED TABS & TRAYS
+ * -------------------------------------------------------------------------- */
+.segmented,
+.tab-nav,
+.review-tab-nav {
+  display: inline-flex !important;
+  align-items: center;
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 16px !important;
+  padding: 4px !important;
+  gap: 4px;
+}
+
+.segmented button,
+.review-tab-btn {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 11px !important;
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 6px 14px !important;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.segmented button:hover,
+.review-tab-btn:hover {
+  color: var(--neu-text-primary, #0B1730) !important;
+}
+
+.segmented button.selected,
+.segmented .selected,
+.review-tab-btn.active {
+  background: var(--neu-bg, #E0E5EC) !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  font-weight: 700 !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 8. AGENT CENTER & REVIEW SYSTEM PRIMITIVES
+ * -------------------------------------------------------------------------- */
+.review-scorecard,
+.executor-output-card,
+.rubric-card,
+.rubric-card-top,
+.proposal-card,
+.review-queue-card,
+.review-trigger-panel,
+.committee-agent-card,
+.committee-trade-card,
+.pending-proposal-card,
+.dhan-settings-panel,
+.review-first-run-container,
+.review-first-run-card,
+.review-preconditions-panel,
+.market-event-card,
+.market-events-panel {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--neu-shadow-raised) !important;
+  border-radius: 20px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.rubric-card,
+.committee-agent-card,
+.committee-trade-card {
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border-radius: 16px !important;
+}
+
+/* Recessed in-card blocks (Evidence citations, code snippets, pre-condition wells) */
+.review-preconditions-grid,
+.evidence-content,
+.code-preview,
+.summary-inset {
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  box-shadow: var(--neu-shadow-inset-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+}
+
+/* Tables in Review Center & Portfolio */
+.benchmark-compare-table,
+.prompt-versions-table,
+.trade-ledger-table,
+.table-wrapper table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: var(--neu-bg, #E0E5EC) !important;
+}
+
+.table-wrap,
+.table-wrapper {
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  box-shadow: var(--neu-shadow-inset-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.table-wrapper th,
+.table-wrap th {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(190, 197, 206, 0.4) !important;
+  background: rgba(224, 229, 236, 0.7) !important;
+}
+
+.table-wrapper td,
+.table-wrap td {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(190, 197, 206, 0.25) !important;
+  font-size: 13px !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+}
+
+.table-wrapper tr:last-child td,
+.table-wrap tr:last-child td {
+  border-bottom: 0 !important;
+}
+
+/* Watchlist instrument rows */
+.watch-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px !important;
+  border-bottom: 1px solid rgba(190, 197, 206, 0.25) !important;
+  font-size: 13px !important;
+  border-radius: 10px;
+  transition: background var(--neu-duration-micro) var(--neu-ease);
+}
+
+.watch-row:hover {
+  background: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 9. MARKET LAB INSTRUMENTS & SCENARIOS
+ * -------------------------------------------------------------------------- */
+.dhan-watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.dhan-instrument-card {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border-radius: 16px !important;
+  padding: 14px 16px !important;
+  cursor: pointer;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.dhan-instrument-card:hover {
+  box-shadow: var(--neu-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+.dhan-instrument-card.selected {
+  box-shadow: var(--neu-shadow-pressed) !important;
+  border-color: var(--neu-blue, #477CB9) !important;
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+}
+
+/* Scenario buttons grid in Market Lab */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.scenario-grid button {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  box-shadow: var(--neu-shadow-raised-xs) !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  cursor: pointer;
+  transition: all var(--neu-duration-micro) var(--neu-ease);
+}
+
+.scenario-grid button:hover {
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  transform: translateY(-1px);
+}
+
+.scenario-grid button.selected {
+  box-shadow: var(--neu-shadow-pressed) !important;
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  border-color: var(--neu-blue, #477CB9) !important;
+  font-weight: 700 !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 10. HOMEPAGE NEUMORPHIC PRESENTATION
+ * -------------------------------------------------------------------------- */
+.home,
+.home-lite {
+  background: var(--neu-bg, #E0E5EC) !important;
+  background-image: none !important;
+  color: var(--neu-text-primary, #0B1730) !important;
+  min-height: 100vh;
+}
+
+.home-lite .hero-copy h1 {
+  color: var(--neu-navy-deep, #0B1730) !important;
+  font-size: clamp(2.75rem, 5vw, 5rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.08 !important;
+}
+
+.home-lite .hero-copy h1 i {
+  color: var(--neu-blue, #477CB9) !important;
+  font-style: normal;
+}
+
+.home-lite .hero-copy > p,
+.home-lite .lead {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.65 !important;
+}
+
+.credibility {
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 16px !important;
+  padding: 14px 22px !important;
+  color: var(--neu-text-secondary, #43526C) !important;
+}
+
+.credibility div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+}
+
+.credibility svg {
+  color: var(--neu-blue, #477CB9) !important;
+}
+
+.feature-grid article,
+.home-lite .tilt-card {
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 22px !important;
+  padding: 24px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: box-shadow var(--neu-duration-micro) var(--neu-ease), transform var(--neu-duration-micro) var(--neu-ease) !important;
+}
+
+.feature-grid article:hover,
+.home-lite .tilt-card:hover {
+  box-shadow: var(--neu-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised-xs) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  color: var(--neu-blue, #477CB9) !important;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.feature-grid h3 {
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  color: var(--neu-navy-deep, #0B1730) !important;
+  margin: 0 0 8px !important;
+}
+
+.feature-grid p {
+  color: var(--neu-text-secondary, #43526C) !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+}
+
+/* Five-Stage Decision Pipeline Cards */
+.home-lite .workflow-home .home-flow > div {
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised-sm) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 18px !important;
+  padding: 20px !important;
+  min-height: 130px;
+}
+
+.home-lite .workflow-home .home-flow b {
+  color: var(--neu-blue, #477CB9) !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+
+.home-lite .workflow-home .home-flow span:last-of-type {
+  color: var(--neu-navy-deep, #0B1730) !important;
+  font-size: 14px !important;
+  font-weight: 650 !important;
+}
+
+.break-section {
+  background: var(--neu-bg, #E0E5EC) !important;
+  box-shadow: var(--neu-shadow-raised) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 24px !important;
+  padding: 36px !important;
+  backdrop-filter: none !important;
+}
+
+.break-demo {
+  background: var(--neu-surface-inset, #DDE3EB) !important;
+  box-shadow: var(--neu-shadow-inset) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 18px !important;
+  padding: 22px !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 11. MODALS, SETTINGS DRAWER & DIALOGS
+ * -------------------------------------------------------------------------- */
+.app > .sidebar .drawer,
+.modal-dialog {
+  background: var(--neu-bg, #E0E5EC) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: var(--neu-shadow-modal) !important;
+  border-radius: 22px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.app > .sidebar .drawer .icon-button,
+.drawer .icon-button {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  padding: 0 !important;
+  flex: 0 0 36px !important;
+  border-radius: 10px !important;
+}
+
+.watch-row .badge,
+.watch-row .pill {
+  white-space: nowrap !important;
+  font-size: 9.5px !important;
+  padding: 2px 6px !important;
+}
+
+.modal-backdrop {
+  background: rgba(11, 23, 48, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 12. RESPONSIVE BREAKPOINTS
+ * -------------------------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .metrics.six {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .app > .sidebar > nav button span {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics,
+  .metrics.six {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .overview-grid,
+  .lab-grid,
+  .agent-center-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .home-lite .workflow-home .home-flow {
+    grid-template-columns: 1fr !important;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics,
+  .metrics.six {
+    grid-template-columns: 1fr !important;
+  }
+}

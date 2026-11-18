@@ -1,0 +1,258 @@
+/* ==========================================================================
+   SYNQ SOFT PRECISION — NEUMORPHIC DESIGN SYSTEM TOKENS
+   Product: SYNQ | Tagline: Analyze. Evaluate. Evolve.
+   Design Reference: Neumorphism.io (#e0e0e0 / #E0E5EC)
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+   * 1. NEUMORPHIC SURFACES & PALETTE
+   * ------------------------------------------------------------------------ */
+  --neu-bg: #E0E5EC;
+  --neu-bg-alt: #E6EBF2;
+  --neu-surface: #E0E5EC;
+  --neu-surface-alt: #E6EBF2;
+  --neu-surface-inset: #DDE3EB;
+  --neu-surface-light: #E8EDF4;
+
+  /* Typography Colors */
+  --neu-text-primary: #0B1730;
+  --neu-text-secondary: #43526C;
+  --neu-text-muted: #61718B;
+  --neu-text-disabled: #748096;
+  --neu-text-on-dark: #FFFFFF;
+
+  /* Brand Accents */
+  --neu-navy: #0E1C3D;
+  --neu-navy-deep: #0B1730;
+  --neu-navy-mid: #1B3A6B;
+  --neu-blue: #477CB9;
+  --neu-blue-accent: #477CB9;
+  --neu-blue-light: #8EADD4;
+
+  /* Semantic State Colors */
+  --neu-success: #168568;
+  --neu-success-bg: rgba(22, 133, 104, 0.12);
+  --neu-success-border: rgba(22, 133, 104, 0.28);
+
+  --neu-warning: #A96B15;
+  --neu-warning-bg: rgba(169, 107, 21, 0.12);
+  --neu-warning-border: rgba(169, 107, 21, 0.28);
+
+  --neu-critical: #C13F50;
+  --neu-critical-bg: rgba(193, 63, 80, 0.12);
+  --neu-critical-border: rgba(193, 63, 80, 0.28);
+
+  --neu-info: #326EAA;
+  --neu-info-bg: rgba(50, 110, 170, 0.12);
+  --neu-info-border: rgba(50, 110, 170, 0.28);
+
+  /* ------------------------------------------------------------------------
+   * 2. NEUMORPHIC DUAL SHADOW SYSTEM (Light from Top-Left, Shadow to Bottom-Right)
+   * ------------------------------------------------------------------------ */
+  /* Raised Surfaces */
+  --neu-shadow-raised: 8px 8px 16px #BEC5CE, -8px -8px 16px #FFFFFF;
+  --neu-shadow-raised-sm: 4px 4px 9px #BEC5CE, -4px -4px 9px #FFFFFF;
+  --neu-shadow-raised-xs: 2px 2px 5px #BEC5CE, -2px -2px 5px #FFFFFF;
+  --neu-shadow-subtle: 5px 5px 12px rgba(163, 174, 189, 0.55), -5px -5px 12px rgba(255, 255, 255, 0.85);
+
+  /* Inset / Recessed / Pressed Surfaces */
+  --neu-shadow-inset: inset 4px 4px 9px #BEC5CE, inset -4px -4px 9px #FFFFFF;
+  --neu-shadow-inset-sm: inset 2px 2px 5px #BEC5CE, inset -2px -2px 5px #FFFFFF;
+  --neu-shadow-inset-deep: inset 6px 6px 12px #B8C0CA, inset -6px -6px 12px #FFFFFF;
+
+  /* Interactive States */
+  --neu-shadow-hover: 10px 10px 20px #BEC5CE, -10px -10px 20px #FFFFFF;
+  --neu-shadow-pressed: inset 3px 3px 6px #BEC5CE, inset -3px -3px 6px #FFFFFF;
+  --neu-shadow-modal: 16px 16px 36px #B8C0CA, -16px -16px 36px #FFFFFF;
+
+  /* Borders & Component Outlines */
+  --neu-border-subtle: 1px solid rgba(255, 255, 255, 0.65);
+  --neu-border-control: 1px solid rgba(190, 197, 206, 0.55);
+  --neu-border-active: 1px solid #477CB9;
+
+  /* ------------------------------------------------------------------------
+   * 3. BACKWARD-COMPATIBLE ALIASES
+   * ------------------------------------------------------------------------ */
+  --synq-navy: var(--neu-navy);
+  --synq-navy-deep: var(--neu-navy-deep);
+  --synq-navy-mid: var(--neu-navy-mid);
+  --synq-blue-accent: var(--neu-blue-accent);
+  --synq-blue-light: var(--neu-blue-light);
+  --synq-bg-main: var(--neu-bg);
+  --synq-bg-alt: var(--neu-bg-alt);
+  --synq-bg-subtle: var(--neu-surface-light);
+
+  --synq-text-primary: var(--neu-text-primary);
+  --synq-text-secondary: var(--neu-text-secondary);
+  --synq-text-muted: var(--neu-text-muted);
+  --synq-text-on-dark: var(--neu-text-on-dark);
+
+  --synq-success: var(--neu-success);
+  --synq-warning: var(--neu-warning);
+  --synq-error: var(--neu-critical);
+  --synq-info: var(--neu-info);
+
+  --synq-shadow-sm: var(--neu-shadow-raised-xs);
+  --synq-shadow-glass: var(--neu-shadow-raised);
+  --synq-shadow-elevated: var(--neu-shadow-raised);
+  --synq-shadow-modal: var(--neu-shadow-modal);
+
+  --color-background: var(--neu-bg);
+  --color-surface: var(--neu-surface);
+  --color-surface-glass: var(--neu-surface);
+  --color-text-primary: var(--neu-text-primary);
+  --color-text-secondary: var(--neu-text-secondary);
+  --color-accent: var(--neu-blue-accent);
+  --color-border: rgba(190, 197, 206, 0.55);
+  --color-cta: var(--neu-navy-deep);
+  --color-track: var(--neu-surface-inset);
+  --shadow-glass: var(--neu-shadow-raised);
+  --blur-glass: blur(0px);
+  --radius-glass: 20px;
+
+  --hl-ink: var(--neu-text-primary);
+  --hl-ink-soft: var(--neu-navy-mid);
+  --hl-accent: var(--neu-blue-accent);
+  --hl-cta: var(--neu-navy-deep);
+  --hl-cta-knob: var(--neu-navy-mid);
+  --hl-page: var(--neu-bg);
+  --hl-page-white: var(--neu-surface);
+  --hl-page-soft: var(--neu-bg-alt);
+  --hl-glass: var(--neu-surface);
+  --hl-glass-strong: var(--neu-surface);
+  --hl-glass-border: rgba(255, 255, 255, 0.65);
+  --hl-muted: var(--neu-text-secondary);
+  --hl-muted-secondary: var(--neu-text-muted);
+  --hl-divider: rgba(190, 197, 206, 0.5);
+  --hl-track: var(--neu-surface-inset);
+  --hl-blur: 0px;
+  --hl-radius: 20px;
+  --hl-shadow: var(--neu-shadow-raised);
+
+  /* ------------------------------------------------------------------------
+   * 4. TYPOGRAPHY SYSTEM (Inter-First)
+   * ------------------------------------------------------------------------ */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+
+  --font-heading: var(--font-family-heading);
+  --font-body: var(--font-family-sans);
+  --font-ui: var(--font-family-sans);
+
+  /* Type Scale */
+  --type-display-hero: clamp(2.75rem, 5vw, 5rem);
+  --type-page-title: clamp(1.8rem, 2.8vw, 2.5rem);
+  --type-section-heading: clamp(1.375rem, 1.8vw, 1.625rem);
+  --type-card-heading: 1.0625rem;
+  --type-body: 0.9375rem;
+  --type-secondary: 0.8125rem;
+  --type-compact: 0.75rem;
+
+  /* ------------------------------------------------------------------------
+   * 5. SPACING SCALE (Strict 4-Point System)
+   * ------------------------------------------------------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ------------------------------------------------------------------------
+   * 6. CORNER RADII
+   * ------------------------------------------------------------------------ */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-pill: 9999px;
+
+  /* ------------------------------------------------------------------------
+   * 7. MOTION & EASING (Restrained, Smooth Neumorphic Physics)
+   * ------------------------------------------------------------------------ */
+  --neu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --neu-duration-micro: 160ms;
+  --neu-duration-component: 240ms;
+  --neu-duration-entrance: 450ms;
+
+  --synq-ease: var(--neu-ease);
+  --synq-duration-micro: var(--neu-duration-micro);
+  --synq-duration-component: var(--neu-duration-component);
+  --synq-duration-entrance: var(--neu-duration-entrance);
+  --hl-ease: var(--neu-ease);
+  --hl-duration: var(--neu-duration-component);
+}
+
+/* --------------------------------------------------------------------------
+ * Base Document Rules
+ * -------------------------------------------------------------------------- */
+html {
+  font-family: var(--font-family-sans);
+  color: var(--neu-text-primary);
+  background-color: var(--neu-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-sans);
+  color: var(--neu-text-primary);
+  background-color: var(--neu-bg) !important;
+  background-image: none !important;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Tabular Numerals for Financial Data & Metrics */
+.tabular-nums,
+.metric strong,
+.watch-row em,
+.watch-row span,
+table td,
+table th,
+.chart .recharts-text,
+.badge,
+.pill,
+.counter,
+.timestamp,
+.price-value,
+.pnl-value,
+.code-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible Focus Ring */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--neu-blue) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

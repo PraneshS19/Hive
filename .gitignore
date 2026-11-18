@@ -1,0 +1,43 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Python environments, caches, and test artifacts
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local configuration and data
+.agents/
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+/backend/data/historical/
+/services/ramm_stock_api/
+
+# Local runtime output
+.logs/
+outputs/
+work/
+Hedge/
+
+# Local backups, database journals, and unpublished experiment artifacts
+backups/
+*.db.*
+*.db-wal
+*.db-shm
+*.sqlite-wal
+*.sqlite-shm
+live_benchmark_evidence.json
+backend/benchmark_results.json
+*.egg-info/
+backend/build/

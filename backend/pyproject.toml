@@ -1,0 +1,58 @@
+[project]
+name = "hive-research-backend"
+version = "0.1.0"
+description = "HIVE AI review and paper trading backend"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "sqlalchemy>=2.0.23",
+    "alembic>=1.12.1",
+    "numpy>=1.26.0",
+    "pandas>=2.1.0",
+    "httpx>=0.25.0",
+    "langgraph>=1.0,<2",
+    "websockets>=12.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "python-multipart>=0.0.26",
+    "dhanhq>=2.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "ruff>=0.1.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+markers = [
+    "local_market_data: requires the original market archives or local verification database excluded from public source",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:starlette.testclient",
+    "ignore:The 'app' shortcut is now deprecated:DeprecationWarning:httpx._client",
+    "ignore:The 'app' shortcut is now deprecated:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+logger-objects = ["app.core.logging.logger"]
+
+# FastAPI constructs reusable dependency and upload metadata when routes are declared.
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.File"]
+
+[build-system]
+requires = ["setuptools>=84.1"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
