@@ -1,4 +1,6 @@
-# HIVE
+# HIVE — AI-Assisted Intelligence for Smarter Financial Decisions
+
+**Analyze. Evaluate. Evolve.**
 
 HIVE is a local-first application for evaluating AI agents in financial research and paper trading. A configured executor analyzes market evidence. A separate reviewer evaluates the executor’s recorded output. Python checks verify citations, supported numerical claims, and risk constraints independently of model opinions. Prompt changes move through paired benchmarking and explicit operator approval before activation.
 
@@ -43,8 +45,9 @@ HIVE_EXECUTOR_MODEL=qwen3.5:4b
 HIVE_REVIEWER_MODEL=hf.co/unsloth/gemma-3-4b-it-GGUF:Q4_K_M
 OLLAMA_BASE_URL=http://localhost:11434
 OLLAMA_ENABLED=true
-HEDGELAB_MODEL_TIMEOUT_SECONDS=45
-HEDGELAB_MODEL_KEEP_ALIVE=0
+HIVE_MODEL_TIMEOUT_SECONDS=45
+HIVE_MODEL_KEEP_ALIVE=0
+HIVE_MAX_REVISION_ATTEMPTS=1
 ```
 
 Start the Ollama desktop app, or run `ollama serve` in a separate terminal if the server is stopped. Install the missing models and check the local inventory.
@@ -58,7 +61,7 @@ Invoke-RestMethod http://localhost:11434/api/tags
 
 HIVE checks the installed tags before inference. If Ollama is reachable and a configured tag is missing, Agent Center shows its pull command. The executor and reviewer run sequentially in the API process, with a default keep-alive of zero. Increase the request timeout for slow cold starts. Change role configuration in `.env` and restart the backend. The research workflow records unavailability or failed inference explicitly and preserves any applicable deterministic results.
 
-Start FastAPI from `backend`. Startup creates missing tables and seeds local account, instrument, and prompt metadata.
+Run `./start_hive.ps1` from the repository root to start FastAPI and Vite on loopback. Use `./stop_hive.ps1` to stop the application processes recorded by the launcher. Ollama remains available for other local applications. For a manual launch, start FastAPI from `backend`. Startup creates missing tables and seeds local account, instrument, and prompt metadata.
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
@@ -66,7 +69,21 @@ Start FastAPI from `backend`. Startup creates missing tables and seeds local acc
 
 In a second terminal at the repository root, run `npm.cmd run dev -- --host 127.0.0.1` and open http://localhost:5173. Check http://127.0.0.1:8000/api/v1/health and http://127.0.0.1:8000/api/v1/model-status. Stop each server with Ctrl+C. Restart with the same database URL to keep records.
 
-Use a separate SQLite URL for testing or demonstrations. Keep local databases, backups, downloaded provider data, and credentials outside Git. The database filename retains its original name for existing local installations.
+Use a separate SQLite URL for testing or demonstrations. Keep local databases, backups, downloaded provider data, and credentials outside Git. The fresh-install default is `backend/hive.db`.
+
+### Upgrade an existing installation
+
+1. Stop the old application with its existing launcher or console. Locate the SQLite file specified by its `DATABASE_URL` or its earlier default. Keep the source as a rollback copy, along with a private backup of your `.env` file.
+2. From the new checkout root, create a verified SQLite snapshot at an unused destination. The command uses SQLite's backup API so committed WAL data is included. It verifies database and foreign-key integrity and refuses to overwrite existing files.
+
+   ```powershell
+   backend\.venv\Scripts\python.exe backend/scripts/migrate_database.py $oldDatabasePath backend/hive.db
+   ```
+
+   If the source already has foreign-key violations, the command stops. After reviewing them, use `--allow-existing-foreign-key-violations` only if you need an exact copy that preserves those same violations. The command rejects any change in the violation set.
+
+3. Copy configuration values privately. Rename the previous application prefix on `EXECUTOR_MODEL`, `REVIEWER_MODEL`, `MODEL_TIMEOUT_SECONDS`, `MODEL_KEEP_ALIVE`, and `MAX_REVISION_ATTEMPTS` to `HIVE_`. During transition the old keys remain readable with a warning, and the HIVE keys take precedence. Leave `OLLAMA_BASE_URL`, credentials, and provider settings unchanged. Set `DATABASE_URL` to the new snapshot if you chose a custom destination. To continue using your existing SQLite file in place, take a separate backup first and set `DATABASE_URL` explicitly to its path.
+4. Start HIVE and check the portfolio, prompt versions, run evidence, and benchmark history before retiring the previous installation. Existing prompt content, evidence bytes, and their hashes remain historical records. The currently approved prompt stays active until a replacement passes the usual benchmark and approval workflow. A clean installation seeds the HIVE-branded prompt. Saved research drafts on the same browser origin carry forward automatically.
 
 The public source snapshot excludes provider archives and historical benchmark reports. To use historical replay or backtesting, register CSV data obtained under terms that allow your use. To reproduce the archive-specific regression checks, place your authorized copies of the original archives in `backend/data/historical`. Those checks compare the original files and cannot be reproduced with substitute data. Raw verification screenshots, model evidence, and databases stay local.
 
@@ -103,7 +120,7 @@ backend\.venv\Scripts\python.exe -m pytest -q backend/tests -m "not local_market
 backend\.venv\Scripts\python.exe -m pip check
 ```
 
-The public test command selects 223 tests. The 14 `local_market_data` tests require the original archives or a local HIVE verification database. With those prerequisites installed, run the same command without `-m` to include all 237 tests. Test assertions are the same in both profiles.
+The public test command excludes 14 `local_market_data` tests that require the original archives or a local verification database. Set `HIVE_VERIFICATION_DB` to the latter's path and run the command without `-m` to include the full suite.
 
 The headless Edge smoke test expects local frontend and backend services, the authorized local historical archives described above, and market feeds disabled to exercise the unavailable-data path. Set `HIVE_SMOKE_URL` to the frontend origin and run `npm.cmd run test:browser`. To also exercise live historical research, enable Ollama on the backend and set `HIVE_BROWSER_REAL_MODELS=1` before running the smoke test. Artifacts are written to a new ignored directory under `work`.
 

@@ -13,7 +13,7 @@ def setup_logging(debug: bool = True) -> logging.Logger:
     handler.setFormatter(formatter)
     handler.setLevel(level)
 
-    logger = logging.getLogger("hedgelab")
+    logger = logging.getLogger("hive")
     logger.setLevel(level)
     if not logger.handlers:
         logger.addHandler(handler)

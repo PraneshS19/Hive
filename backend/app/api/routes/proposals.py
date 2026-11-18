@@ -1,5 +1,5 @@
 """
-SYNQ — Risk-Gated Paper-Trade Proposals & Evidence Snapshot Endpoints
+HIVE — Risk-Gated Paper-Trade Proposals & Evidence Snapshot Endpoints
 Provides explicit human confirmation workflows, revalidation checks,
 and access to immutable evidence packets.
 """

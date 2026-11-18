@@ -10,7 +10,7 @@ def test_api_config(client):
     res = client.get("/api/v1/config")
     assert res.status_code == 200
     data = res.json()
-    assert data["app_name"] in ("HIVE Backend", "SYNQ Backend", "HedgeLab Backend")
+    assert data["app_name"] == "HIVE Backend"
 
 
 def test_api_dashboard_summary(client):

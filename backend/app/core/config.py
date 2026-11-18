@@ -1,11 +1,14 @@
 import json
+import warnings
 from pathlib import Path
+from typing import ClassVar
 
-from pydantic import AliasChoices, Field, field_validator, model_validator
+from app.core.installation_compat import PREVIOUS_PREFIX, migrated_setting, require_database_choice
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
-DEFAULT_DB_PATH = BACKEND_DIR / "hedgelab.db"
+DEFAULT_DB_PATH = BACKEND_DIR / "hive.db"
 
 
 class Settings(BaseSettings):
@@ -15,9 +18,7 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
-    APP_NAME: str = "HIVE Backend"
-    PROJECT_NAME: str = "HIVE"
-    PROJECT_TAGLINE: str = "Analyze. Evaluate. Evolve."
+    APP_NAME: ClassVar[str] = "HIVE Backend"
     APP_ENV: str = "development"
     DEBUG: bool = True
     API_V1_STR: str = "/api/v1"
@@ -82,15 +83,25 @@ class Settings(BaseSettings):
     # Multi-Agent Continuous Review & Improvement Settings
     HIVE_EXECUTOR_MODEL: str = Field(
         default="qwen3.5:4b",
-        validation_alias=AliasChoices("HIVE_EXECUTOR_MODEL", "HEDGELAB_EXECUTOR_MODEL"),
+        validation_alias=migrated_setting("HIVE_EXECUTOR_MODEL"),
         pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$",
     )
     HIVE_REVIEWER_MODEL: str = Field(
         default="hf.co/unsloth/gemma-3-4b-it-GGUF:Q4_K_M",
-        validation_alias=AliasChoices("HIVE_REVIEWER_MODEL", "HEDGELAB_REVIEWER_MODEL"),
+        validation_alias=migrated_setting("HIVE_REVIEWER_MODEL"),
         pattern=r"^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$",
     )
     HIVE_OPERATOR_TOKEN: str = Field(default="", repr=False)
+    HIVE_MODEL_TIMEOUT_SECONDS: float = Field(default=45.0, gt=0, validation_alias=migrated_setting("HIVE_MODEL_TIMEOUT_SECONDS"))
+    HIVE_MODEL_KEEP_ALIVE: str = Field(default="0", validation_alias=migrated_setting("HIVE_MODEL_KEEP_ALIVE"))
+    HIVE_MAX_REVISION_ATTEMPTS: int = Field(default=1, ge=0, validation_alias=migrated_setting("HIVE_MAX_REVISION_ATTEMPTS"))
+
+    @classmethod
+    def settings_customise_sources(cls, settings_cls, init_settings, env_settings, dotenv_settings, file_secret_settings):
+        # Settings sources normalize alias names before model validators run.
+        if any(key.upper().startswith(PREVIOUS_PREFIX) for source in (env_settings, dotenv_settings) for key in source.env_vars):
+            warnings.warn("Rename previous application settings to their HIVE_ equivalents.", FutureWarning, stacklevel=2)
+        return init_settings, env_settings, dotenv_settings, file_secret_settings
 
     @model_validator(mode="after")
     def validate_model_roles(self):
@@ -99,12 +110,8 @@ class Settings(BaseSettings):
 
         if model_tag(self.HIVE_EXECUTOR_MODEL).casefold() == model_tag(self.HIVE_REVIEWER_MODEL).casefold():
             raise ValueError("Executor and reviewer must use distinct Ollama models")
+        require_database_choice(DEFAULT_DB_PATH, self.DATABASE_URL)
         return self
-    HEDGELAB_MODEL_TIMEOUT_SECONDS: float = 45.0
-    HEDGELAB_MODEL_KEEP_ALIVE: str = "0"
-    HEDGELAB_MAX_REVISION_ATTEMPTS: int = 1
-    HEDGELAB_REVIEW_ENABLED: bool = True
-    HEDGELAB_IMPROVEMENT_ENABLED: bool = True
     MIN_EVAL_SAMPLE_THRESHOLD: int = 3
 
     # DhanHQ Live Market-Data Ingestion Settings

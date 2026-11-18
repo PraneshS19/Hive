@@ -673,9 +673,9 @@ def test_dataset_specific_observation_counts_and_multi_instrument_alignment():
        - No synthetic rows, interpolation, or forward-filling are fabricated.
     """
     import os
-    db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "hedgelab.db")
+    db_path = os.getenv("HIVE_VERIFICATION_DB") or os.path.join(os.path.dirname(os.path.dirname(__file__)), "hive.db")
     if not os.path.exists(db_path):
-        pytest.skip("Active SQLite database hedgelab.db not present in backend/")
+        pytest.skip("HIVE verification database not found; set HIVE_VERIFICATION_DB")
 
     engine = create_engine(f"sqlite:///{db_path}")
     Session = sessionmaker(bind=engine)
@@ -730,9 +730,9 @@ def test_exact_static_source_file_sha256_matches_sqlite_registry():
     """
     import hashlib
     import os
-    db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "hedgelab.db")
+    db_path = os.getenv("HIVE_VERIFICATION_DB") or os.path.join(os.path.dirname(os.path.dirname(__file__)), "hive.db")
     if not os.path.exists(db_path):
-        pytest.skip("Active SQLite database hedgelab.db not present in backend/")
+        pytest.skip("HIVE verification database not found; set HIVE_VERIFICATION_DB")
 
     engine = create_engine(f"sqlite:///{db_path}")
     Session = sessionmaker(bind=engine)
@@ -795,9 +795,9 @@ def test_dynamic_dataset_canonical_content_digests_dual_spec():
     import hashlib
     import os
     import sqlite3
-    db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "hedgelab.db")
+    db_path = os.getenv("HIVE_VERIFICATION_DB") or os.path.join(os.path.dirname(os.path.dirname(__file__)), "hive.db")
     if not os.path.exists(db_path):
-        pytest.skip("Active SQLite database hedgelab.db not present in backend/")
+        pytest.skip("HIVE verification database not found; set HIVE_VERIFICATION_DB")
 
     # 1. Spec A verification via raw SQLite cursor
     conn = sqlite3.connect(db_path)
@@ -897,9 +897,9 @@ def test_currency_rounding_half_up_boundary_invariants():
     import os
 
     from app.db.models import BacktestRun
-    db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "hedgelab.db")
+    db_path = os.getenv("HIVE_VERIFICATION_DB") or os.path.join(os.path.dirname(os.path.dirname(__file__)), "hive.db")
     if not os.path.exists(db_path):
-        pytest.skip("Active SQLite database hedgelab.db not present in backend/")
+        pytest.skip("HIVE verification database not found; set HIVE_VERIFICATION_DB")
 
     engine = create_engine(f"sqlite:///{db_path}")
     Session = sessionmaker(bind=engine)

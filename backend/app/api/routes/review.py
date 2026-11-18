@@ -113,7 +113,7 @@ async def create_agent_run(
         "review_verdict": "PENDING",
         "overall_score": 0.0,
         "revision_count": 0,
-        "max_revisions": getattr(settings, "HEDGELAB_MAX_REVISION_ATTEMPTS", 1),
+        "max_revisions": settings.HIVE_MAX_REVISION_ATTEMPTS,
         "step_events": [],
         "findings": [],
         "error_message": None

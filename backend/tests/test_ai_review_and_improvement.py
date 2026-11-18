@@ -1,5 +1,5 @@
 """
-HedgeLab — AI-Assisted Review, Evaluation, and Continuous Improvement Test Suite
+HIVE — AI-Assisted Review, Evaluation, and Continuous Improvement Test Suite
 Tests trace collection, objective check assertions, rubric evaluation,
 LangGraph workflow nodes, benchmark suite comparison, safety gates, and proposal lifecycle.
 """

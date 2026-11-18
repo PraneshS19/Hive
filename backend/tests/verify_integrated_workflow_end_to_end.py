@@ -33,7 +33,7 @@ print("=========================================================================
 print("   PHASE 5: COMPLETE END-TO-END INTEGRATED SYSTEM & WORKFLOW AUDIT             ")
 print("================================================================================")
 
-PROD_DB_PATH = os.path.abspath("backend/hedgelab.db")
+PROD_DB_PATH = os.path.abspath(os.getenv("HIVE_VERIFICATION_DB", "backend/hive.db"))
 ISOLATED_DB_PATH = os.path.abspath("backend/test_isolated_workflow.db")
 
 # Step 10 Pre-Check: Active Production Database Baseline

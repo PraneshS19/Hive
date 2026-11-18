@@ -108,7 +108,7 @@ def initialize_run(state: ReviewExecutionState) -> dict[str, Any]:
         "prompt_hash": active["prompt_hash"],
         "executor_system_prompt": active["system_prompt"],
         "revision_count": 0,
-        "max_revisions": getattr(settings, "HEDGELAB_MAX_REVISION_ATTEMPTS", 1)
+        "max_revisions": settings.HIVE_MAX_REVISION_ATTEMPTS
     }
 
 

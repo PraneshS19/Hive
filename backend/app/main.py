@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 
 from app.api.router import api_router
 from app.core.config import settings
-from app.core.errors import HedgeLabError
+from app.core.errors import HiveError
 from app.core.logging import logger
 from app.db.init_db import init_db
 
@@ -37,7 +37,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=settings.APP_NAME,
-    description="HIVE AI Review and Paper Trading API",
+    description="HIVE — AI-Assisted Intelligence for Smarter Financial Decisions. Paper trading only.",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
@@ -54,9 +54,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Custom exception handler for HedgeLab application errors
-@app.exception_handler(HedgeLabError)
-async def hedgelab_exception_handler(request: Request, exc: HedgeLabError):
+# Custom exception handler for HIVE application errors
+@app.exception_handler(HiveError)
+async def hive_exception_handler(request: Request, exc: HiveError):
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
         content={

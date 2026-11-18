@@ -1,5 +1,5 @@
 """
-Security utilities and validation helpers for HedgeLab.
+Security utilities and validation helpers for HIVE.
 Maintains safety guards against untrusted inputs, prompt injection, and arbitrary code execution.
 """
 import re

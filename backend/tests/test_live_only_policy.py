@@ -1,5 +1,5 @@
 """
-Regression tests for SYNQ Live-Only Market Data Policy, DhanHQ Feed Adapter,
+Regression tests for HIVE Live-Only Market Data Policy, DhanHQ Feed Adapter,
 and Valuation Integrity.
 """
 

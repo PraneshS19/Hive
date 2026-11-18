@@ -24,8 +24,8 @@ This document records the design patterns, libraries, and architectural referenc
 ### C. FastAPI (tiangolo)
 - **Repository**: https://github.com/fastapi/fastapi
 - **License**: MIT
-- **Role in HedgeLab**:
-  - Foundation of the HedgeLab Python backend.
+- **Role in HIVE**:
+  - Foundation of the HIVE Python backend.
   - Asynchronous route handlers, Pydantic v2 data validation, OpenAPI specification, dependency injection for database sessions and services.
 
 ### D. backtesting.py (kernc)

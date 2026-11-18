@@ -32,14 +32,14 @@ def http_call(url: str, method: str = "GET", data: dict[str, Any] | None = None,
 
 def run_full_master_audit():
     print("================================================================================")
-    print("   HEDGELAB COMPREHENSIVE END-TO-END MASTER AUDIT & EVIDENCE VERIFICATION")
+    print("   HIVE COMPREHENSIVE END-TO-END MASTER AUDIT & EVIDENCE VERIFICATION")
     print("================================================================================")
 
     # -------------------------------------------------------------------------
     # PHASE 1 & 2: Real Market Data Provenance & Zero Synthetic Invariant
     # -------------------------------------------------------------------------
     print("\n--- PHASE 1 & 2: VERIFYING REAL-DATA INVARIANTS & PURGE OF SYNTHETICS ---")
-    db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "hedgelab.db"))
+    db_path = os.path.abspath(os.getenv("HIVE_VERIFICATION_DB", os.path.join(os.path.dirname(__file__), "..", "hive.db")))
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 
@@ -177,7 +177,7 @@ def run_full_master_audit():
             code = resp.status
             html = resp.read().decode("utf-8")
             assert code == exp_status, f"Frontend route {route} failed with status {code}"
-            assert "<div id=\"root\">" in html or "<div id='root'>" in html or "HedgeLab" in html
+            assert "<div id=\"root\">" in html or "<div id='root'>" in html or "HIVE" in html
             print(f"[PASS] Frontend Route: {route:<20} ({label}) -> Status: {code} (HTML Loaded)")
 
     # Verify Vite Proxy to Backend

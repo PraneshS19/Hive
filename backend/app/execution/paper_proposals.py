@@ -2,7 +2,7 @@ from app.market.dhan_adapter import dhan_live_feed
 from sqlalchemy import text
 
 """
-SYNQ — Risk-Gated Paper-Trade Proposal Service
+HIVE — Risk-Gated Paper-Trade Proposal Service
 Manages the lifecycle of paper-trade proposals generated from evidence-backed AI analysis.
 Enforces deterministic risk limits, proposal expiration, explicit human confirmation,
 and confirmation-time revalidation before paper execution.

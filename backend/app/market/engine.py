@@ -147,7 +147,7 @@ class MarketEngine:
         raise ValueError(
             f"Insufficient verified market data for '{symbol}' "
             f"(found {len(db_candles)} candles, minimum 15 required). "
-            f"SYNQ enforces LIVE_ONLY mode."
+            f"HIVE enforces LIVE_ONLY mode."
         )
 
     def get_indicators(self, db: Session, symbol: str) -> dict[str, Any]:

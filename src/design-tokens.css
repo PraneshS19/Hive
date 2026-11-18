@@ -1,6 +1,6 @@
 /* ==========================================================================
-   SYNQ SOFT PRECISION — NEUMORPHIC DESIGN SYSTEM TOKENS
-   Product: SYNQ | Tagline: Analyze. Evaluate. Evolve.
+   HIVE SOFT PRECISION — NEUMORPHIC DESIGN SYSTEM TOKENS
+   Product: HIVE | Tagline: Analyze. Evaluate. Evolve.
    Design Reference: Neumorphism.io (#e0e0e0 / #E0E5EC)
    ========================================================================== */
 
@@ -74,29 +74,29 @@
   /* ------------------------------------------------------------------------
    * 3. BACKWARD-COMPATIBLE ALIASES
    * ------------------------------------------------------------------------ */
-  --synq-navy: var(--neu-navy);
-  --synq-navy-deep: var(--neu-navy-deep);
-  --synq-navy-mid: var(--neu-navy-mid);
-  --synq-blue-accent: var(--neu-blue-accent);
-  --synq-blue-light: var(--neu-blue-light);
-  --synq-bg-main: var(--neu-bg);
-  --synq-bg-alt: var(--neu-bg-alt);
-  --synq-bg-subtle: var(--neu-surface-light);
+  --hive-navy: var(--neu-navy);
+  --hive-navy-deep: var(--neu-navy-deep);
+  --hive-navy-mid: var(--neu-navy-mid);
+  --hive-blue-accent: var(--neu-blue-accent);
+  --hive-blue-light: var(--neu-blue-light);
+  --hive-bg-main: var(--neu-bg);
+  --hive-bg-alt: var(--neu-bg-alt);
+  --hive-bg-subtle: var(--neu-surface-light);
 
-  --synq-text-primary: var(--neu-text-primary);
-  --synq-text-secondary: var(--neu-text-secondary);
-  --synq-text-muted: var(--neu-text-muted);
-  --synq-text-on-dark: var(--neu-text-on-dark);
+  --hive-text-primary: var(--neu-text-primary);
+  --hive-text-secondary: var(--neu-text-secondary);
+  --hive-text-muted: var(--neu-text-muted);
+  --hive-text-on-dark: var(--neu-text-on-dark);
 
-  --synq-success: var(--neu-success);
-  --synq-warning: var(--neu-warning);
-  --synq-error: var(--neu-critical);
-  --synq-info: var(--neu-info);
+  --hive-success: var(--neu-success);
+  --hive-warning: var(--neu-warning);
+  --hive-error: var(--neu-critical);
+  --hive-info: var(--neu-info);
 
-  --synq-shadow-sm: var(--neu-shadow-raised-xs);
-  --synq-shadow-glass: var(--neu-shadow-raised);
-  --synq-shadow-elevated: var(--neu-shadow-raised);
-  --synq-shadow-modal: var(--neu-shadow-modal);
+  --hive-shadow-sm: var(--neu-shadow-raised-xs);
+  --hive-shadow-glass: var(--neu-shadow-raised);
+  --hive-shadow-elevated: var(--neu-shadow-raised);
+  --hive-shadow-modal: var(--neu-shadow-modal);
 
   --color-background: var(--neu-bg);
   --color-surface: var(--neu-surface);
@@ -111,24 +111,24 @@
   --blur-glass: blur(0px);
   --radius-glass: 20px;
 
-  --hl-ink: var(--neu-text-primary);
-  --hl-ink-soft: var(--neu-navy-mid);
-  --hl-accent: var(--neu-blue-accent);
-  --hl-cta: var(--neu-navy-deep);
-  --hl-cta-knob: var(--neu-navy-mid);
-  --hl-page: var(--neu-bg);
-  --hl-page-white: var(--neu-surface);
-  --hl-page-soft: var(--neu-bg-alt);
-  --hl-glass: var(--neu-surface);
-  --hl-glass-strong: var(--neu-surface);
-  --hl-glass-border: rgba(255, 255, 255, 0.65);
-  --hl-muted: var(--neu-text-secondary);
-  --hl-muted-secondary: var(--neu-text-muted);
-  --hl-divider: rgba(190, 197, 206, 0.5);
-  --hl-track: var(--neu-surface-inset);
-  --hl-blur: 0px;
-  --hl-radius: 20px;
-  --hl-shadow: var(--neu-shadow-raised);
+  --hive-ui-ink: var(--neu-text-primary);
+  --hive-ui-ink-soft: var(--neu-navy-mid);
+  --hive-ui-accent: var(--neu-blue-accent);
+  --hive-ui-cta: var(--neu-navy-deep);
+  --hive-ui-cta-knob: var(--neu-navy-mid);
+  --hive-ui-page: var(--neu-bg);
+  --hive-ui-page-white: var(--neu-surface);
+  --hive-ui-page-soft: var(--neu-bg-alt);
+  --hive-ui-glass: var(--neu-surface);
+  --hive-ui-glass-strong: var(--neu-surface);
+  --hive-ui-glass-border: rgba(255, 255, 255, 0.65);
+  --hive-ui-muted: var(--neu-text-secondary);
+  --hive-ui-muted-secondary: var(--neu-text-muted);
+  --hive-ui-divider: rgba(190, 197, 206, 0.5);
+  --hive-ui-track: var(--neu-surface-inset);
+  --hive-ui-blur: 0px;
+  --hive-ui-radius: 20px;
+  --hive-ui-shadow: var(--neu-shadow-raised);
 
   /* ------------------------------------------------------------------------
    * 4. TYPOGRAPHY SYSTEM (Inter-First)
@@ -185,12 +185,12 @@
   --neu-duration-component: 240ms;
   --neu-duration-entrance: 450ms;
 
-  --synq-ease: var(--neu-ease);
-  --synq-duration-micro: var(--neu-duration-micro);
-  --synq-duration-component: var(--neu-duration-component);
-  --synq-duration-entrance: var(--neu-duration-entrance);
-  --hl-ease: var(--neu-ease);
-  --hl-duration: var(--neu-duration-component);
+  --hive-ease: var(--neu-ease);
+  --hive-duration-micro: var(--neu-duration-micro);
+  --hive-duration-component: var(--neu-duration-component);
+  --hive-duration-entrance: var(--neu-duration-entrance);
+  --hive-ui-ease: var(--neu-ease);
+  --hive-ui-duration: var(--neu-duration-component);
 }
 
 /* --------------------------------------------------------------------------

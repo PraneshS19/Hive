@@ -1,3 +1,4 @@
+import { readResearchDraft } from "./services/researchDraft";
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Area, AreaChart, Bar, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Activity, BrainCircuit, ChartNoAxesCombined, ChevronLeft, ChevronRight, FlaskConical, LayoutDashboard, Newspaper, RotateCcw, Settings, ShieldCheck, Sparkles, TrendingDown, TrendingUp, Wallet, Waves, X, Zap, Upload, Download, AlertTriangle, CheckCircle2, Database, Cpu } from 'lucide-react';
@@ -202,7 +203,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    document.title = 'HIVE — AI Review for Financial Research';
+    document.title = 'HIVE — AI-Assisted Intelligence for Smarter Financial Decisions';
     refreshFromBackend();
   }, []);
 
@@ -266,7 +267,7 @@ export default function App() {
     } else if (page === 'Agent Center') {
       setRunning(true);
       try {
-        const storedPrompt = localStorage.getItem('synq_agent_prompt') || 'Analyze 20-day SMA, RSI momentum, and annualized volatility for allocation sizing.';
+        const storedPrompt = readResearchDraft() || 'Analyze 20-day SMA, RSI momentum, and annualized volatility for allocation sizing.';
         await api.triggerAgentRun({
           symbol: selected || 'RELIANCE',
           task_prompt: storedPrompt,
@@ -837,8 +838,8 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
   if (loading && candles.length === 0) {
     return (
       <div className="chart-empty-state" style={{ minHeight: '260px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <Activity className="spin" size={24} style={{ color: 'var(--synq-accent, #4A78B0)', marginBottom: '8px' }} />
-        <p style={{ color: 'var(--synq-text-secondary, #59627E)', fontSize: '13px', margin: 0 }}>Loading verified market data for {symbol}...</p>
+        <Activity className="spin" size={24} style={{ color: 'var(--hive-accent, #4A78B0)', marginBottom: '8px' }} />
+        <p style={{ color: 'var(--hive-text-secondary, #59627E)', fontSize: '13px', margin: 0 }}>Loading verified market data for {symbol}...</p>
       </div>
     );
   }
@@ -847,8 +848,8 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
     return (
       <div className="chart-empty-state" style={{ padding: '40px 16px', textAlign: 'center', minHeight: '260px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <Activity size={28} style={{ opacity: 0.5, margin: '0 auto 10px', color: '#64748B' }} />
-        <p style={{ fontWeight: 600, color: 'var(--synq-text-primary, #0B1730)', margin: '0 0 6px', fontSize: '14px' }}>No Chart Observations Available</p>
-        <span style={{ fontSize: '12px', color: 'var(--synq-text-secondary, #59627E)', maxWidth: '380px', display: 'block', margin: '0 auto', lineHeight: '1.5' }}>
+        <p style={{ fontWeight: 600, color: 'var(--hive-text-primary, #0B1730)', margin: '0 0 6px', fontSize: '14px' }}>No Chart Observations Available</p>
+        <span style={{ fontSize: '12px', color: 'var(--hive-text-secondary, #59627E)', maxWidth: '380px', display: 'block', margin: '0 auto', lineHeight: '1.5' }}>
           Historical database records or live polling data for {symbol} are currently unavailable.
         </span>
       </div>
@@ -895,7 +896,7 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
       <div style={{
         background: 'rgba(255, 255, 255, 0.98)',
         backdropFilter: 'blur(16px)',
-        border: '1px solid var(--synq-border, #D8E2EF)',
+        border: '1px solid var(--hive-border, #D8E2EF)',
         borderRadius: 10,
         padding: '10px 14px',
         boxShadow: '0 8px 24px rgba(31, 53, 87, 0.12)',
@@ -904,11 +905,11 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
         minWidth: '200px'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #E2EBF5', paddingBottom: '5px', marginBottom: '6px' }}>
-          <span style={{ fontWeight: 700, color: 'var(--synq-text-primary, #0B1730)' }}>{symbol}</span>
+          <span style={{ fontWeight: 700, color: 'var(--hive-text-primary, #0B1730)' }}>{symbol}</span>
           <span style={{ color: '#64748B', fontSize: '10px' }}>{pt.time}</span>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px 12px', marginBottom: '6px' }}>
-          <div><span style={{ color: '#64748B' }}>Close: </span><b style={{ color: 'var(--synq-text-primary, #0B1730)' }}>{money(pt.price)}</b></div>
+          <div><span style={{ color: '#64748B' }}>Close: </span><b style={{ color: 'var(--hive-text-primary, #0B1730)' }}>{money(pt.price)}</b></div>
           <div><span style={{ color: '#64748B' }}>Open: </span><b>{money(pt.open)}</b></div>
           <div><span style={{ color: '#64748B' }}>High: </span><b style={{ color: '#10B981' }}>{money(pt.high)}</b></div>
           <div><span style={{ color: '#64748B' }}>Low: </span><b style={{ color: '#EF4444' }}>{money(pt.low)}</b></div>
@@ -956,13 +957,13 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
             {isHistorical ? 'HISTORICAL DAILY BARS (NSE) — MARKET CLOSED' : 'LIVE POLLING INTRADAY BARS'}
           </span>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '11px', color: '#64748B' }}>
-            <span>High: <b style={{ color: 'var(--synq-text-primary, #0B1730)' }}>{money(maxP)}</b></span>
-            <span>Low: <b style={{ color: 'var(--synq-text-primary, #0B1730)' }}>{money(minP)}</b></span>
+            <span>High: <b style={{ color: 'var(--hive-text-primary, #0B1730)' }}>{money(maxP)}</b></span>
+            <span>Low: <b style={{ color: 'var(--hive-text-primary, #0B1730)' }}>{money(minP)}</b></span>
             <span>Range Return: <b style={{ color: isUp ? '#10B981' : '#EF4444' }}>
               {isUp ? '+' : ''}{money(periodDelta)} ({isUp ? '+' : ''}{periodDeltaPct.toFixed(2)}%)
             </b></span>
             {avgVolume > 0 && (
-              <span className="hide-mobile">Avg Vol: <b style={{ color: 'var(--synq-text-primary, #0B1730)' }}>{formatVol(avgVolume)}</b></span>
+              <span className="hide-mobile">Avg Vol: <b style={{ color: 'var(--hive-text-primary, #0B1730)' }}>{formatVol(avgVolume)}</b></span>
             )}
           </div>
         </div>
@@ -973,7 +974,7 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
           background: 'rgba(255, 255, 255, 0.75)',
           padding: '2px',
           borderRadius: '8px',
-          border: '1px solid var(--synq-border, #D8E2EF)'
+          border: '1px solid var(--hive-border, #D8E2EF)'
         }}>
           {(['1M', '3M', '6M', '1Y'] as TimeframeOption[]).map(tf => (
             <button
@@ -982,8 +983,8 @@ function MarketPriceChart({ symbol }: { symbol: string }) {
               onClick={() => setTimeframe(tf)}
               style={{
                 border: 0,
-                background: timeframe === tf ? 'var(--synq-accent, #4A78B0)' : 'transparent',
-                color: timeframe === tf ? '#ffffff' : 'var(--synq-text-secondary, #59627E)',
+                background: timeframe === tf ? 'var(--hive-accent, #4A78B0)' : 'transparent',
+                color: timeframe === tf ? '#ffffff' : 'var(--hive-text-secondary, #59627E)',
                 padding: '3px 8px',
                 fontSize: '11px',
                 fontWeight: 600,
@@ -1161,7 +1162,7 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
             <BrainCircuit style={{ width: 18, height: 18, color: '#3b82f6' }} />
             <h2 style={{ margin: 0, fontSize: '15px' }}>Agent Performance & Evaluation</h2>
           </div>
-          <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--hl-muted-secondary, #6b7796)' }}>
+          <p style={{ margin: '3px 0 0', fontSize: '12px', color: 'var(--hive-ui-muted-secondary, #6b7796)' }}>
             {chartMode === 'outcomes' && 'Gemma qualitative rubric review score (0-100 pts) and audit verdicts'}
             {chartMode === 'latency' && 'Execution and review turnaround latency in seconds'}
           </p>
@@ -1193,60 +1194,60 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
         marginBottom: '10px',
         padding: '8px 12px',
         background: 'rgba(243, 246, 251, 0.75)',
-        border: '1px solid var(--synq-border, #D8E2EF)',
+        border: '1px solid var(--hive-border, #D8E2EF)',
         borderRadius: '10px'
       }}>
         <div>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--synq-text-secondary, #5E6F8F)', display: 'block' }}>
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--hive-text-secondary, #5E6F8F)', display: 'block' }}>
             Evaluated Runs
           </span>
-          <strong style={{ fontSize: '16px', fontWeight: 700, color: 'var(--synq-text-primary, #0B1730)', fontVariantNumeric: 'tabular-nums' }}>
+          <strong style={{ fontSize: '16px', fontWeight: 700, color: 'var(--hive-text-primary, #0B1730)', fontVariantNumeric: 'tabular-nums' }}>
             {totalEvaluatedRuns}
           </strong>
-          <span style={{ fontSize: '10px', color: 'var(--synq-text-muted, #7D8BA5)', display: 'block' }}>
+          <span style={{ fontSize: '10px', color: 'var(--hive-text-muted, #7D8BA5)', display: 'block' }}>
             {completedRuns} completed
           </span>
         </div>
         <div>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--synq-text-secondary, #5E6F8F)', display: 'block' }}>
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--hive-text-secondary, #5E6F8F)', display: 'block' }}>
             Avg Review Score
           </span>
           <strong style={{
             fontSize: '16px',
             fontWeight: 700,
             fontVariantNumeric: 'tabular-nums',
-            color: avgScore >= 80 ? 'var(--synq-success, #168568)' : avgScore >= 60 ? 'var(--synq-warning, #B7791F)' : 'var(--synq-error, #C84D5B)'
+            color: avgScore >= 80 ? 'var(--hive-success, #168568)' : avgScore >= 60 ? 'var(--hive-warning, #B7791F)' : 'var(--hive-error, #C84D5B)'
           }}>
             {avgScore.toFixed(0)} pts
           </strong>
-          <span style={{ fontSize: '10px', color: 'var(--synq-text-muted, #7D8BA5)', display: 'block' }}>
+          <span style={{ fontSize: '10px', color: 'var(--hive-text-muted, #7D8BA5)', display: 'block' }}>
             Gemma 3 Rubric
           </span>
         </div>
         <div>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--synq-text-secondary, #5E6F8F)', display: 'block' }}>
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--hive-text-secondary, #5E6F8F)', display: 'block' }}>
             Open Findings
           </span>
           <strong style={{
             fontSize: '16px',
             fontWeight: 700,
             fontVariantNumeric: 'tabular-nums',
-            color: totalFindings > 0 ? 'var(--synq-warning, #B7791F)' : 'var(--synq-success, #168568)'
+            color: totalFindings > 0 ? 'var(--hive-warning, #B7791F)' : 'var(--hive-success, #168568)'
           }}>
             {totalFindings}
           </strong>
-          <span style={{ fontSize: '10px', color: 'var(--synq-text-muted, #7D8BA5)', display: 'block' }}>
+          <span style={{ fontSize: '10px', color: 'var(--hive-text-muted, #7D8BA5)', display: 'block' }}>
             Qualitative critique
           </span>
         </div>
         <div>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--synq-text-secondary, #5E6F8F)', display: 'block' }}>
+          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--hive-text-secondary, #5E6F8F)', display: 'block' }}>
             Avg Latency
           </span>
-          <strong style={{ fontSize: '16px', fontWeight: 700, color: 'var(--synq-blue-accent, #4B7FBD)', fontVariantNumeric: 'tabular-nums' }}>
+          <strong style={{ fontSize: '16px', fontWeight: 700, color: 'var(--hive-blue-accent, #4B7FBD)', fontVariantNumeric: 'tabular-nums' }}>
             {avgLatencySec.toFixed(1)}s
           </strong>
-          <span style={{ fontSize: '10px', color: 'var(--synq-text-muted, #7D8BA5)', display: 'block' }}>
+          <span style={{ fontSize: '10px', color: 'var(--hive-text-muted, #7D8BA5)', display: 'block' }}>
             P95: {p95LatencySec.toFixed(1)}s
           </span>
         </div>
@@ -1255,8 +1256,8 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
       {/* Main Chart Area */}
       <div className="chart" style={{ height: '220px', position: 'relative' }}>
         {loading ? (
-          <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, color: 'var(--synq-text-secondary, #5E6F8F)' }}>
-            <Activity className="spin" style={{ width: 24, height: 24, color: 'var(--synq-blue-accent, #4B7FBD)' }} />
+          <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, color: 'var(--hive-text-secondary, #5E6F8F)' }}>
+            <Activity className="spin" style={{ width: 24, height: 24, color: 'var(--hive-blue-accent, #4B7FBD)' }} />
             <span style={{ fontSize: '12px' }}>Loading evaluated agent runs...</span>
           </div>
         ) : error ? (
@@ -1272,11 +1273,11 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
             borderRadius: '10px',
             border: '1px dashed rgba(200, 77, 91, 0.35)'
           }}>
-            <AlertTriangle style={{ width: 28, height: 28, color: 'var(--synq-error, #C84D5B)', marginBottom: 6 }} />
-            <strong style={{ fontSize: '13px', color: 'var(--synq-error, #C84D5B)', marginBottom: 4 }}>
+            <AlertTriangle style={{ width: 28, height: 28, color: 'var(--hive-error, #C84D5B)', marginBottom: 6 }} />
+            <strong style={{ fontSize: '13px', color: 'var(--hive-error, #C84D5B)', marginBottom: 4 }}>
               Failed to load agent evaluation records
             </strong>
-            <p style={{ fontSize: '11px', color: 'var(--synq-text-secondary, #5E6F8F)', margin: '0 0 10px', maxWidth: 380 }}>
+            <p style={{ fontSize: '11px', color: 'var(--hive-text-secondary, #5E6F8F)', margin: '0 0 10px', maxWidth: 380 }}>
               {error}
             </p>
             <button
@@ -1288,11 +1289,11 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
                 padding: '6px 12px',
                 borderRadius: '6px',
                 background: 'rgba(255, 255, 255, 0.85)',
-                border: '1px solid var(--synq-border, #D8E2EF)',
-                color: 'var(--synq-text-primary, #0B1730)',
+                border: '1px solid var(--hive-border, #D8E2EF)',
+                color: 'var(--hive-text-primary, #0B1730)',
                 fontSize: '11px',
                 cursor: 'pointer',
-                boxShadow: 'var(--synq-shadow-sm, 0 1px 3px rgba(14, 28, 61, 0.05))'
+                boxShadow: 'var(--hive-shadow-sm, 0 1px 3px rgba(14, 28, 61, 0.05))'
               }}
             >
               <RotateCcw style={{ width: 12, height: 12 }} /> Retry
@@ -1309,13 +1310,13 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
             padding: '20px',
             background: 'rgba(243, 246, 251, 0.5)',
             borderRadius: '10px',
-            border: '1px dashed var(--synq-border, #D8E2EF)'
+            border: '1px dashed var(--hive-border, #D8E2EF)'
           }}>
-            <Sparkles style={{ width: 28, height: 28, color: 'var(--synq-blue-accent, #4B7FBD)', marginBottom: 6 }} />
-            <strong style={{ fontSize: '14px', color: 'var(--synq-text-primary, #0B1730)', marginBottom: 4 }}>
+            <Sparkles style={{ width: 28, height: 28, color: 'var(--hive-blue-accent, #4B7FBD)', marginBottom: 6 }} />
+            <strong style={{ fontSize: '14px', color: 'var(--hive-text-primary, #0B1730)', marginBottom: 4 }}>
               No evaluations recorded yet
             </strong>
-            <p style={{ fontSize: '11px', color: 'var(--synq-text-secondary, #5E6F8F)', maxWidth: 360, margin: '0 0 12px' }}>
+            <p style={{ fontSize: '11px', color: 'var(--hive-text-secondary, #5E6F8F)', maxWidth: 360, margin: '0 0 12px' }}>
               Execute an AI review loop in the Agent Center to generate Qwen executions and Gemma review audits.
             </p>
             {onNavigateAgentCenter && (
@@ -1370,12 +1371,12 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
                   return (
                     <div style={{
                       background: 'rgba(255, 255, 255, 0.96)',
-                      border: '1px solid var(--synq-border, #D8E2EF)',
+                      border: '1px solid var(--hive-border, #D8E2EF)',
                       borderRadius: 10,
                       padding: '10px 14px',
-                      color: 'var(--synq-text-primary, #0B1730)',
+                      color: 'var(--hive-text-primary, #0B1730)',
                       fontSize: '11px',
-                      boxShadow: 'var(--synq-shadow-md, 0 8px 28px rgba(31, 53, 87, 0.08))',
+                      boxShadow: 'var(--hive-shadow-md, 0 8px 28px rgba(31, 53, 87, 0.08))',
                       minWidth: 230,
                     }}>
                       <div style={{
@@ -1386,42 +1387,42 @@ function AgentPerformancePanel({ onNavigateAgentCenter }: { onNavigateAgentCente
                         borderBottom: '1px solid #EAF0F8',
                         paddingBottom: 4
                       }}>
-                        <b style={{ color: 'var(--synq-navy-mid, #1B3A6B)' }}>{d.symbol || 'AGENT RUN'}</b>
-                        <span style={{ color: 'var(--synq-text-muted, #7D8BA5)', fontSize: '10px', fontVariantNumeric: 'tabular-nums' }}>{d.fullTime}</span>
+                        <b style={{ color: 'var(--hive-navy-mid, #1B3A6B)' }}>{d.symbol || 'AGENT RUN'}</b>
+                        <span style={{ color: 'var(--hive-text-muted, #7D8BA5)', fontSize: '10px', fontVariantNumeric: 'tabular-nums' }}>{d.fullTime}</span>
                       </div>
-                      <div style={{ fontSize: '9px', color: 'var(--synq-text-secondary, #5E6F8F)', marginBottom: 6, fontFamily: 'monospace' }}>
+                      <div style={{ fontSize: '9px', color: 'var(--hive-text-secondary, #5E6F8F)', marginBottom: 6, fontFamily: 'monospace' }}>
                         {d.run_id}
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px', marginBottom: 4 }}>
-                        <span style={{ color: 'var(--synq-text-secondary, #5E6F8F)' }}>Execution Status:</span>
-                        <b style={{ color: d.status === 'COMPLETED' ? 'var(--synq-success, #168568)' : 'var(--synq-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
+                        <span style={{ color: 'var(--hive-text-secondary, #5E6F8F)' }}>Execution Status:</span>
+                        <b style={{ color: d.status === 'COMPLETED' ? 'var(--hive-success, #168568)' : 'var(--hive-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
                           {d.status}
                         </b>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px', marginBottom: 4 }}>
-                        <span style={{ color: 'var(--synq-text-secondary, #5E6F8F)' }}>Objective Checks:</span>
-                        <b style={{ color: d.objective_pass_pct >= 80 ? 'var(--synq-success, #168568)' : d.objective_pass_pct >= 50 ? 'var(--synq-warning, #B7791F)' : 'var(--synq-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
+                        <span style={{ color: 'var(--hive-text-secondary, #5E6F8F)' }}>Objective Checks:</span>
+                        <b style={{ color: d.objective_pass_pct >= 80 ? 'var(--hive-success, #168568)' : d.objective_pass_pct >= 50 ? 'var(--hive-warning, #B7791F)' : 'var(--hive-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
                           {d.objective_pass_pct}% Pass (Deterministic)
                         </b>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px', marginBottom: 4 }}>
-                        <span style={{ color: 'var(--synq-text-secondary, #5E6F8F)' }}>Reviewer Verdict:</span>
-                        <b style={{ color: d.review_verdict === 'PASS' ? 'var(--synq-success, #168568)' : d.review_verdict === 'FLAG' ? 'var(--synq-warning, #B7791F)' : 'var(--synq-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
+                        <span style={{ color: 'var(--hive-text-secondary, #5E6F8F)' }}>Reviewer Verdict:</span>
+                        <b style={{ color: d.review_verdict === 'PASS' ? 'var(--hive-success, #168568)' : d.review_verdict === 'FLAG' ? 'var(--hive-warning, #B7791F)' : 'var(--hive-error, #C84D5B)', fontVariantNumeric: 'tabular-nums' }}>
                           {d.review_verdict} ({d.overall_score} pts)
                         </b>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px', marginBottom: 4 }}>
-                        <span style={{ color: 'var(--synq-text-secondary, #5E6F8F)' }}>Review Findings:</span>
-                        <b style={{ color: d.findings_count > 0 ? 'var(--synq-warning, #B7791F)' : 'var(--synq-success, #168568)', fontVariantNumeric: 'tabular-nums' }}>
+                        <span style={{ color: 'var(--hive-text-secondary, #5E6F8F)' }}>Review Findings:</span>
+                        <b style={{ color: d.findings_count > 0 ? 'var(--hive-warning, #B7791F)' : 'var(--hive-success, #168568)', fontVariantNumeric: 'tabular-nums' }}>
                           {d.findings_count} item{d.findings_count === 1 ? '' : 's'}
                         </b>
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '4px' }}>
-                        <span style={{ color: 'var(--synq-text-secondary, #5E6F8F)' }}>Total Latency:</span>
-                        <b style={{ color: 'var(--synq-blue-accent, #4B7FBD)', fontVariantNumeric: 'tabular-nums' }}>{d.total_latency_sec}s</b>
+                        <span style={{ color: 'var(--hive-text-secondary, #5E6F8F)' }}>Total Latency:</span>
+                        <b style={{ color: 'var(--hive-blue-accent, #4B7FBD)', fontVariantNumeric: 'tabular-nums' }}>{d.total_latency_sec}s</b>
                       </div>
                       {(d.executor_latency_sec > 0 || d.reviewer_latency_sec > 0) && (
-                        <div style={{ fontSize: '9px', color: 'var(--synq-text-muted, #7D8BA5)', marginTop: 4, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
+                        <div style={{ fontSize: '9px', color: 'var(--hive-text-muted, #7D8BA5)', marginTop: 4, textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>
                           Qwen: {d.executor_latency_sec}s · Gemma: {d.reviewer_latency_sec}s
                         </div>
                       )}
@@ -2199,11 +2200,11 @@ function BacktestEquityChart({
             width={80}
           />
           <Tooltip
-            contentStyle={{ background: 'rgba(255, 255, 255, 0.96)', border: '1px solid var(--synq-border, #D8E2EF)', borderRadius: 10, color: 'var(--synq-text-primary, #0B1730)', fontSize: 11, boxShadow: 'var(--synq-shadow-md, 0 8px 24px rgba(31, 53, 87, 0.08))' }}
+            contentStyle={{ background: 'rgba(255, 255, 255, 0.96)', border: '1px solid var(--hive-border, #D8E2EF)', borderRadius: 10, color: 'var(--hive-text-primary, #0B1730)', fontSize: 11, boxShadow: 'var(--hive-shadow-md, 0 8px 24px rgba(31, 53, 87, 0.08))' }}
             formatter={(v: any, name: string) => [money(Number(v)), name]}
             labelFormatter={(label) => `Date: ${label}`}
           />
-          <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--synq-text-secondary, #5E6F8F)' }}/>
+          <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', color: 'var(--hive-text-secondary, #5E6F8F)' }}/>
           <Area
             type="monotone"
             dataKey="equity"
@@ -2242,7 +2243,7 @@ function TradeLedgerTable({ trades }: { trades: any[] }) {
     <div className="table-wrapper" style={{ overflowX: 'auto', marginTop: 12 }}>
       <table className="trade-ledger-table tabular-nums" style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
         <thead>
-          <tr style={{ borderBottom: '1px solid var(--synq-border, #D8E2EF)', textAlign: 'left', color: 'var(--synq-text-secondary, #5E6F8F)' }}>
+          <tr style={{ borderBottom: '1px solid var(--hive-border, #D8E2EF)', textAlign: 'left', color: 'var(--hive-text-secondary, #5E6F8F)' }}>
             <th style={{ padding: '8px 12px' }}>#</th>
             <th style={{ padding: '8px 12px' }}>Side</th>
             <th style={{ padding: '8px 12px' }}>Qty</th>
@@ -2259,22 +2260,22 @@ function TradeLedgerTable({ trades }: { trades: any[] }) {
           {trades.map((t) => {
             const isWin = t.pnl > 0;
             return (
-              <tr key={t.id} style={{ borderBottom: '1px solid var(--synq-border-subtle, #EAF0F8)' }}>
-                <td style={{ padding: '8px 12px', color: 'var(--synq-text-muted, #7D8BA5)' }}>{t.id}</td>
+              <tr key={t.id} style={{ borderBottom: '1px solid var(--hive-border-subtle, #EAF0F8)' }}>
+                <td style={{ padding: '8px 12px', color: 'var(--hive-text-muted, #7D8BA5)' }}>{t.id}</td>
                 <td style={{ padding: '8px 12px' }}>
-                  <span className="badge" style={{ fontSize: 10, padding: '2px 6px', background: 'rgba(75, 127, 189, 0.12)', color: 'var(--synq-blue-accent, #4B7FBD)' }}>
+                  <span className="badge" style={{ fontSize: 10, padding: '2px 6px', background: 'rgba(75, 127, 189, 0.12)', color: 'var(--hive-blue-accent, #4B7FBD)' }}>
                     {t.side}
                   </span>
                 </td>
-                <td style={{ padding: '8px 12px', fontWeight: 600, color: 'var(--synq-text-primary, #0B1730)' }}>{t.quantity}</td>
-                <td style={{ padding: '8px 12px', color: 'var(--synq-text-secondary, #5E6F8F)' }}>{t.entry_time}</td>
-                <td style={{ padding: '8px 12px', color: 'var(--synq-text-primary, #0B1730)' }}>₹{t.entry_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                <td style={{ padding: '8px 12px', color: 'var(--synq-text-secondary, #5E6F8F)' }}>{t.exit_time}</td>
-                <td style={{ padding: '8px 12px', color: 'var(--synq-text-primary, #0B1730)' }}>₹{t.exit_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 600, color: isWin ? 'var(--synq-success, #168568)' : 'var(--synq-error, #C84D5B)' }}>
+                <td style={{ padding: '8px 12px', fontWeight: 600, color: 'var(--hive-text-primary, #0B1730)' }}>{t.quantity}</td>
+                <td style={{ padding: '8px 12px', color: 'var(--hive-text-secondary, #5E6F8F)' }}>{t.entry_time}</td>
+                <td style={{ padding: '8px 12px', color: 'var(--hive-text-primary, #0B1730)' }}>₹{t.entry_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+                <td style={{ padding: '8px 12px', color: 'var(--hive-text-secondary, #5E6F8F)' }}>{t.exit_time}</td>
+                <td style={{ padding: '8px 12px', color: 'var(--hive-text-primary, #0B1730)' }}>₹{t.exit_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+                <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 600, color: isWin ? 'var(--hive-success, #168568)' : 'var(--hive-error, #C84D5B)' }}>
                   {isWin ? '+' : ''}₹{t.pnl.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </td>
-                <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 600, color: isWin ? 'var(--synq-success, #168568)' : 'var(--synq-error, #C84D5B)' }}>
+                <td style={{ padding: '8px 12px', textAlign: 'right', fontWeight: 600, color: isWin ? 'var(--hive-success, #168568)' : 'var(--hive-error, #C84D5B)' }}>
                   {isWin ? '+' : ''}{t.pnl_pct.toFixed(2)}%
                 </td>
                 <td style={{ padding: '8px 12px', textAlign: 'center' }}>

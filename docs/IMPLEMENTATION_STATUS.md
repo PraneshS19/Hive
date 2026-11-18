@@ -78,8 +78,8 @@ From the backend directory, use the exact role environment variables described i
 
 ```powershell
 $env:PYTHONPATH = (Get-Location).Path
-$env:HEDGELAB_MODEL_TIMEOUT_SECONDS = '180'
-$env:HEDGELAB_MODEL_KEEP_ALIVE = '2m'
+$env:HIVE_MODEL_TIMEOUT_SECONDS = '180'
+$env:HIVE_MODEL_KEEP_ALIVE = '2m'
 .\.venv\Scripts\python.exe ..\scripts\run_live_benchmark_execution.py ..\work\hive-next-benchmark.json
 ```
 
@@ -183,3 +183,11 @@ The full list of modified paths for this remediation is in `work/hive-final-reme
 | Git preflight | `git diff --check` passed. The filename and credential-pattern checks found no release candidates containing tracked database names or common credential patterns. The public source preparation later checked all files in the isolated release tree. |
 
 The [release security assessment](RELEASE_SECURITY_ASSESSMENT.md) records the later advisory withdrawal, refreshed npm audit, and owner-approved exception for the inspected build configuration.
+
+## HIVE installation migration
+
+The Windows launcher binds the API and development frontend to loopback and records the processes it owns. The stop script verifies the process identities before stopping them. New SQLite installations use `backend/hive.db`. Existing installations can retain their explicit database path or use the verified snapshot command in the [README](../README.md#upgrade-an-existing-installation).
+
+The full regression run passed 242 tests. The source-only profile passed 228 tests with 14 local-data tests deselected. Edge verified the landing page and five application routes. A historical replay used the configured Qwen executor and Gemma reviewer and recorded a `FLAG` verdict. The browser backtest used 246 observations and produced 10 simulated trades. Paper cash and holdings stayed unchanged.
+
+The clean-install prompt contains the HIVE name and has its own SHA-256 digest. Existing approved prompts, evidence packets, and benchmark records keep their original bytes and digests. The model-setting aliases and saved browser draft key are temporary compatibility paths.

@@ -123,7 +123,7 @@ class LocalLLMProvider:
                 {
                     "role": "system",
                     "content": (
-                        "You are a quantitative financial assistant in HedgeLab, an educational paper-trading simulator. "
+                        "You are a quantitative financial assistant in HIVE, an educational paper-trading simulator. "
                         f"{system_prompt}. "
                         "You MUST respond ONLY with a valid JSON object. Do not include markdown codeblocks, extraneous thoughts, or commentary."
                     ),

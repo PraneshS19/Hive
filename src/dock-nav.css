@@ -8,7 +8,7 @@
 .app>.sidebar>nav button{display:flex!important;justify-content:center;gap:8px;min-height:44px;padding:10px 13px!important;border:1px solid transparent!important;border-radius:14px!important;color:var(--color-text-secondary)!important;font-size:12px!important;white-space:nowrap;transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease}
 .app>.sidebar>nav button svg{width:18px;height:18px;flex:0 0 auto}
 .app>.sidebar>nav button:hover{transform:translateY(-1px);background:rgba(255,255,255,.92)!important;color:var(--color-text-primary)!important;box-shadow:0 7px 18px rgba(34,62,99,.12)}
-.app>.sidebar>nav button.active{color:var(--synq-text-primary, #0B1730)!important;background:rgba(75,127,189,.14)!important;border-color:rgba(75,127,189,.28)!important;font-weight:600!important;box-shadow:0 2px 8px rgba(75,127,189,.12)!important}
+.app>.sidebar>nav button.active{color:var(--hive-text-primary, #0B1730)!important;background:rgba(75,127,189,.14)!important;border-color:rgba(75,127,189,.28)!important;font-weight:600!important;box-shadow:0 2px 8px rgba(75,127,189,.12)!important}
 .app>.sidebar>nav button.active:hover{transform:translateY(-1px)}
 .app>.sidebar>.side-bottom{order:3;display:flex!important;align-items:center;gap:8px;margin:0!important}
 .app>.sidebar .sim-pill{margin:0;padding:8px 10px;border-color:var(--color-border)!important;background:rgba(255,255,255,.7)!important;color:var(--color-text-secondary)!important;white-space:nowrap}

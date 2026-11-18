@@ -44,7 +44,7 @@ class DecisionPipelineEngine:
             provider_name = getattr(settings, "MARKET_DATA_PROVIDER", "0xramm_yahoo_rest")
             raise ValueError(
                 f"Live analysis unavailable for '{symbol}': no verified live market observation received from provider ({provider_name}). "
-                f"SYNQ is operating in LIVE_ONLY mode. Live analysis requires an active live feed session."
+                f"HIVE is operating in LIVE_ONLY mode. Live analysis requires an active live feed session."
             )
         current_price = quote["price"]
 

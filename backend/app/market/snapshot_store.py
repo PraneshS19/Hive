@@ -1,5 +1,5 @@
 """
-SYNQ — Market Snapshot Persistence & Retrieval Store
+HIVE — Market Snapshot Persistence & Retrieval Store
 Durable SQLite storage for genuine verified market observations.
 Ensures prices remain transparently available during market closures, weekends,
 exchange holidays, and provider interruptions without fabricating data.

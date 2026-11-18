@@ -1,5 +1,5 @@
 """
-SYNQ — Automated Test Suite: Last Available Market Data & Market-Closed Handling
+HIVE — Automated Test Suite: Last Available Market Data & Market-Closed Handling
 Covers all 16 required test scenarios:
 1. test_market_closed_on_saturday
 2. test_market_closed_on_sunday

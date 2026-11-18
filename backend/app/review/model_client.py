@@ -22,8 +22,8 @@ class ReviewModelClient:
         self.base_url = settings.OLLAMA_BASE_URL.rstrip("/")
         self.executor_model = settings.HIVE_EXECUTOR_MODEL
         self.reviewer_model = settings.HIVE_REVIEWER_MODEL
-        self.timeout = getattr(settings, "HEDGELAB_MODEL_TIMEOUT_SECONDS", 45.0)
-        self.keep_alive = settings.HEDGELAB_MODEL_KEEP_ALIVE
+        self.timeout = settings.HIVE_MODEL_TIMEOUT_SECONDS
+        self.keep_alive = settings.HIVE_MODEL_KEEP_ALIVE
         self.enabled = settings.OLLAMA_ENABLED
         self._inference_lock = asyncio.Lock()
 

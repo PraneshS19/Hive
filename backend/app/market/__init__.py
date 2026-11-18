@@ -1,5 +1,5 @@
 """
-SYNQ Market Subsystem
+HIVE Market Subsystem
 Provides live and simulated market intelligence feeds, adapters, and quantitative calculations.
 """
 

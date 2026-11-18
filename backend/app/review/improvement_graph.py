@@ -285,7 +285,7 @@ async def generate_improvement_proposal(state: ContinuousImprovementState) -> di
             "hypothesis_source": state.get("hypothesis_source"),
             "target_temperature": 0.1
         },
-        "affected_configuration": "HEDGELAB_EXECUTOR_SYSTEM_PROMPT",
+        "affected_configuration": "HIVE_EXECUTOR_SYSTEM_PROMPT",
         "expected_benefit": expected_benefit,
         "regression_risks": "Minimal; preserves quantitative indicator alignment and risk gate boundaries.",
         "benchmark_case_ids": ["BM_01_NORMAL_MOMENTUM", "BM_02_MISSING_INDICATOR", "BM_03_UNVERIFIED_RUMOR", "BM_08_PORTFOLIO_CONCENTRATION_LIMIT"],

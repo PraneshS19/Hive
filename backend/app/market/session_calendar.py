@@ -1,5 +1,5 @@
 """
-SYNQ — NSE Market Session Calendar & Trading Schedule Service
+HIVE — NSE Market Session Calendar & Trading Schedule Service
 Authoritative exchange session determination for Indian National Stock Exchange (NSE).
 Timezone: Asia/Kolkata (IST = UTC + 5:30).
 

@@ -1,5 +1,5 @@
 """
-SYNQ — Evidence Snapshot Service
+HIVE — Evidence Snapshot Service
 Constructs and freezes an immutable, timestamped evidence packet for every event.
 Guarantees strict time-consistency for subsequent Qwen execution, Gemma review,
 and reproducible offline benchmark replay.
@@ -58,7 +58,7 @@ class EvidenceSnapshotService:
                     provider_name = getattr(settings, "MARKET_DATA_PROVIDER", "0xramm_yahoo_rest")
                     raise ValueError(
                         f"Cannot freeze evidence snapshot for '{sym}': no verified live market observation is available from provider ({provider_name}). "
-                        f"SYNQ enforces MARKET_DATA_MODE=LIVE_ONLY."
+                        f"HIVE enforces MARKET_DATA_MODE=LIVE_ONLY."
                     )
 
             # 2. Indicators calculated strictly from live-observed ticks (no historical backfill)

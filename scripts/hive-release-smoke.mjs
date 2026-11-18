@@ -20,7 +20,10 @@ try {
   await page.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
   const response = await page.goto(`${origin}/app/agents`, { waitUntil: 'domcontentloaded', timeout: 45000 });
   assert.equal(response.status(), 200);
-  assert.match(await page.title(), /HIVE/);
+  assert.equal(await page.title(), 'HIVE — AI-Assisted Intelligence for Smarter Financial Decisions');
+  const favicon = await page.request.get(`${origin}/favicon.svg`);
+  assert.equal(favicon.status(), 200);
+  assert.match(await favicon.text(), /<title>HIVE<\/title>/);
   const real = process.env.HIVE_BROWSER_REAL_MODELS === '1';
   await page.getByText(real ? 'Ollama Online' : 'Ollama Offline', { exact: true }).first().waitFor();
   const runButton = page.locator('.review-run-btn').first();

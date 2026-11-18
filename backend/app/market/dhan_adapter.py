@@ -1,5 +1,5 @@
 """
-SYNQ — DhanHQ-py Live Market Data Ingestion Adapter
+HIVE — DhanHQ-py Live Market Data Ingestion Adapter
 Exclusively responsible for live market-data feed ingestion via DhanHQ-py.
 Zero brokerage or order-execution operations are permitted in this module.
 """
@@ -374,7 +374,7 @@ class DhanLiveFeedAdapter:
 
     def normalize_and_ingest_tick(self, raw_data: dict[str, Any]):
         """
-        Normalizes a DhanHQ MarketFeed packet into standard SYNQ tick format.
+        Normalizes a DhanHQ MarketFeed packet into standard HIVE tick format.
         Preserves source timestamps and ingestion timestamps without blocking.
         Enforces live-only policy: distinguishes live ticks from reference close data.
         """

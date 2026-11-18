@@ -15,7 +15,7 @@ print("=========================================================================
 print("   PHASE G: ISOLATED PAPER TRADING & ACCOUNTING INTEGRITY AUDIT                 ")
 print("================================================================================")
 
-PROD_DB_PATH = os.path.abspath("backend/hedgelab.db")
+PROD_DB_PATH = os.path.abspath(os.getenv("HIVE_VERIFICATION_DB", "backend/hive.db"))
 ISOLATED_DB_PATH = os.path.abspath("backend/test_isolated_paper_trading.db")
 
 # 1. Take Snapshot of Active Production Database

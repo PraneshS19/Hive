@@ -1,5 +1,5 @@
 """
-SYNQ — Deterministic Event Detection Service
+HIVE — Deterministic Event Detection Service
 Evaluates normalized market state using 100% deterministic rules.
 Implements cooldowns, deduplication, and priority queuing to ensure the LLM
 is only invoked on meaningful events rather than on every tick.

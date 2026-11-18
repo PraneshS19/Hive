@@ -1,3 +1,4 @@
+import { readResearchDraft, saveResearchDraft } from "../../services/researchDraft";
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { Server, Cpu, ShieldCheck, CheckCircle2, Play, RefreshCw, ChevronRight, ChevronLeft, Award, RotateCcw, Activity, Layers, Zap, Sparkles, BrainCircuit, Database } from 'lucide-react';
 import { api } from '../../services/api';
@@ -242,7 +243,7 @@ export function ReviewCenter({
   // Execution Trigger State
   const [triggerSymbol, setTriggerSymbol] = useState<string>(selected || 'RELIANCE');
   const [triggerPrompt, setTriggerPrompt] = useState<string>(() => {
-    return localStorage.getItem('synq_agent_prompt') || DEFAULT_PROMPT;
+    return readResearchDraft() || DEFAULT_PROMPT;
   });
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
   const [isGeneratingProposal, setIsGeneratingProposal] = useState<boolean>(false);
@@ -312,7 +313,7 @@ export function ReviewCenter({
 
   const handleResetPrompt = () => {
     setTriggerPrompt(DEFAULT_PROMPT);
-    localStorage.setItem('synq_agent_prompt', DEFAULT_PROMPT);
+    saveResearchDraft(DEFAULT_PROMPT);
     setActionMessage('Prompt reset to default.');
     setTimeout(() => setActionMessage(null), 3000);
   };
@@ -574,7 +575,7 @@ export function ReviewCenter({
               value={triggerPrompt}
               onChange={(e) => {
                 setTriggerPrompt(e.target.value);
-                localStorage.setItem('synq_agent_prompt', e.target.value);
+                saveResearchDraft(e.target.value);
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !isExecuting) {

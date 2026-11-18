@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HedgeLab — AI-Assisted Review & Continuous Improvement System Styles
+   HIVE — AI-Assisted Review & Continuous Improvement System Styles
    ========================================================================== */
 
 .review-system-container {
@@ -434,7 +434,7 @@
 }
 
 /* -------------------------------------------------------------------------
-   SYNQ Live Feed & Paper Proposal Styles
+   HIVE Live Feed & Paper Proposal Styles
    ------------------------------------------------------------------------- */
 .badge-live {
   background: rgba(16, 185, 129, 0.15);
@@ -827,17 +827,17 @@
 .app .dhan-watchlist-container .rubric-card,
 .app .dhan-watchlist-container .dhan-instrument-card,
 .app .dhan-watchlist-container .market-event-card {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38)) !important;
-  border: 1px solid var(--hl-glass-border) !important;
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border) !important;
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .dhan-watchlist-container > div:first-child,
 .app .dhan-watchlist-container .market-events-panel {
-  border-radius: var(--hl-radius) !important;
+  border-radius: var(--hive-ui-radius) !important;
 }
 
 .app .dhan-watchlist-container .rubric-card {
@@ -862,24 +862,24 @@
 .app .dhan-watchlist-container .rubric-card > span:first-child,
 .app .dhan-watchlist-container .dhan-instrument-card > div:first-child > div > div,
 .app .dhan-watchlist-container .dhan-instrument-card > div:last-child {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .dhan-watchlist-container > div:first-child > div:first-child > div > span:nth-child(2),
 .app .dhan-watchlist-container .rubric-card > span:nth-child(2),
 .app .dhan-watchlist-container .dhan-instrument-card > div:first-child > div > b,
 .app .dhan-watchlist-container .dhan-instrument-card > div:nth-child(2) > span:first-child {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .dhan-watchlist-container .rubric-card > span:nth-child(3) {
-  color: var(--hl-muted-secondary) !important;
+  color: var(--hive-ui-muted-secondary) !important;
 }
 
 .app .dhan-watchlist-container .instrument-status {
   border: 1px solid rgba(74, 120, 176, .18);
   background: rgba(74, 120, 176, .1) !important;
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .dhan-watchlist-container .instrument-status.live {
@@ -900,7 +900,7 @@
 .app .dhan-watchlist-container .badge-unconfigured {
   border-color: rgba(74, 120, 176, .2);
   background: rgba(74, 120, 176, .1);
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .app .dhan-watchlist-container .instrument-change.up {
@@ -912,21 +912,21 @@
 }
 
 .app .dhan-watchlist-container > div:first-child button {
-  border: 1px solid var(--hl-divider) !important;
+  border: 1px solid var(--hive-ui-divider) !important;
   border-radius: 10px !important;
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(255, 255, 255, .62) !important;
 }
 
 .app .dhan-watchlist-container input[type="text"] {
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
   border-radius: 10px !important;
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
   background: rgba(255, 255, 255, .82) !important;
 }
 
 .app .dhan-watchlist-container input[type="text"]::placeholder {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .dhan-watchlist-container > div:nth-child(3) button {
@@ -935,24 +935,24 @@
 }
 
 .app .dhan-watchlist-container .market-event-card {
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
   border-radius: 12px !important;
   background: rgba(255, 255, 255, .48) !important;
 }
 
 .app .dhan-watchlist-container .market-events-panel > span {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .dhan-watchlist-container .market-events-panel b {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .dhan-watchlist-container .market-event-type {
   border: 1px solid rgba(74, 120, 176, .18);
   border-radius: 6px;
   background: rgba(74, 120, 176, .1) !important;
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .dhan-watchlist-container .market-event-type.other {
@@ -962,41 +962,41 @@
 }
 
 .app .dhan-watchlist-container .market-event-detail {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .dhan-watchlist-container .market-events-panel button {
   border: 1px solid rgba(74, 120, 176, .2) !important;
   border-radius: 8px !important;
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(74, 120, 176, .1) !important;
 }
 
 .app .scenario-info {
-  border: 1px solid var(--hl-glass-border);
+  border: 1px solid var(--hive-ui-glass-border);
   border-radius: 16px;
   background: rgba(255, 255, 255, .48);
 }
 
 .app .scenario-info b {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
 }
 
 .app .scenario-info p {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
 }
 
 .app .review-system-container .review-model-bar,
 .app .review-system-container .review-trigger-panel,
 .app .review-system-container div[style*="background: rgba(18, 24, 38"],
 .app .review-system-container div[style*="background: rgba(18, 22, 34"] {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38)) !important;
-  border: 1px solid var(--hl-glass-border) !important;
-  border-radius: var(--hl-radius) !important;
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border) !important;
+  border-radius: var(--hive-ui-radius) !important;
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .review-system-container .review-trigger-panel {
@@ -1006,12 +1006,12 @@
 }
 
 .app .review-system-container .review-trigger-label {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .review-system-container .review-trigger-panel .review-run-btn {
   color: #fff;
-  background: linear-gradient(135deg, var(--hl-accent), #384b64);
+  background: linear-gradient(135deg, var(--hive-ui-accent), #384b64);
   border: 1px solid rgba(56, 75, 100, .24);
   border-radius: 10px;
   box-shadow: 0 8px 18px rgba(15, 27, 49, .12);
@@ -1022,20 +1022,20 @@
 }
 
 .app .review-system-container .review-trigger-panel .review-reset-btn {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   background: rgba(255, 255, 255, .58);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 10px;
 }
 
 .app .review-system-container .review-trigger-panel .review-reset-btn:hover {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(74, 120, 176, .1);
 }
 
 .app .review-system-container .review-replay-button {
   color: #fff !important;
-  background: linear-gradient(135deg, var(--hl-accent), #384b64) !important;
+  background: linear-gradient(135deg, var(--hive-ui-accent), #384b64) !important;
   border: 1px solid rgba(56, 75, 100, .24);
   box-shadow: 0 6px 14px rgba(15, 27, 49, .14) !important;
 }
@@ -1052,13 +1052,13 @@
 }
 
 .app .review-first-run-container {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .72), rgba(255, 255, 255, .42));
-  border: 1px solid var(--hl-glass-border);
-  border-radius: var(--hl-radius);
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border);
+  border-radius: var(--hive-ui-radius);
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .review-first-run-container .review-hero-icon {
@@ -1068,33 +1068,33 @@
 
 .app .review-first-run-container .review-hero-icon svg,
 .app .review-first-run-container .review-first-run-card .card-top > svg {
-  stroke: var(--hl-accent);
+  stroke: var(--hive-ui-accent);
 }
 
 .app .review-first-run-container .review-first-run-card,
 .app .review-first-run-container .review-preconditions-panel {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .56);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(15, 27, 49, .04);
 }
 
 .app .review-first-run-container .review-first-run-card h4 {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
 }
 
 .app .review-first-run-container .review-first-run-card p,
 .app .review-first-run-container .review-precondition-item .item-label,
 .app .review-first-run-container .review-agent-loop-metrics {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
 }
 
 .app .review-first-run-container .card-pill.blue,
 .app .review-first-run-container .card-pill.green,
 .app .review-first-run-container .card-pill.purple,
 .app .review-first-run-container .card-pill.amber {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .1);
   border: 1px solid rgba(74, 120, 176, .2);
   border-radius: 999px;
@@ -1106,7 +1106,7 @@
   min-height: 74px;
   padding: 10px 12px;
   background: rgba(255, 255, 255, .68);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(15, 27, 49, .04);
 }
@@ -1116,7 +1116,7 @@
 }
 
 .app .review-first-run-container .review-agent-loop-item {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .app .review-first-run-container .review-precondition-item .item-value.pass,
@@ -1134,24 +1134,24 @@
 
 .app .review-first-run-container .review-precondition-item .item-value.info,
 .app .review-first-run-container .review-agent-loop-metrics b {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
 }
 
 .app .review-first-run-container .review-agent-loop-heading {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .app .review-first-run-container .review-agent-loop-heading svg {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
 }
 
 .app .review-first-run-container .review-first-run-cta > span {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .review-first-run-container .review-run-btn.cta-large {
   color: #fff;
-  background: linear-gradient(135deg, var(--hl-accent), #384b64);
+  background: linear-gradient(135deg, var(--hive-ui-accent), #384b64);
   border: 1px solid rgba(56, 75, 100, .24);
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(15, 27, 49, .12);
@@ -1162,48 +1162,48 @@
 }
 
 .app .paper-proposals-heading .paper-proposals-eyebrow {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .paper-proposals-heading .paper-proposals-title {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .paper-proposals-heading .paper-proposals-refresh {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   background: rgba(255, 255, 255, .58) !important;
-  border: 1px solid var(--hl-divider) !important;
+  border: 1px solid var(--hive-ui-divider) !important;
   border-radius: 10px !important;
 }
 
 .app .paper-proposals-heading .paper-proposals-refresh:hover {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
   background: rgba(74, 120, 176, .1) !important;
 }
 
 .app .paper-proposals-empty {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .4)) !important;
   border: 1px dashed rgba(74, 120, 176, .28) !important;
   border-radius: 16px !important;
   box-shadow: 0 8px 20px rgba(15, 27, 49, .04);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .review-system-container div[style*="background: rgb(10, 14, 23)"],
 .app .review-system-container div[style*="background: rgb(9, 13, 22)"],
 .app .review-system-container div[style*="background: rgba(0, 0, 0, 0.2)"] {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(255, 255, 255, .48) !important;
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
   border-radius: 12px !important;
 }
 
 .app .review-system-container .review-model-chip {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .55);
-  border-color: var(--hl-divider);
+  border-color: var(--hive-ui-divider);
   border-radius: 999px;
 }
 
@@ -1214,7 +1214,7 @@
 }
 
 .app .review-system-container .review-model-chip.reviewer {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .1);
   border-color: rgba(74, 120, 176, .2);
 }
@@ -1226,33 +1226,33 @@
 }
 
 .app .review-system-container .review-tab-nav {
-  border-color: var(--hl-divider);
+  border-color: var(--hive-ui-divider);
 }
 
 .app .review-system-container .review-tab-btn {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
 }
 
 .app .review-system-container .review-tab-btn:hover {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(255, 255, 255, .55);
 }
 
 .app .review-system-container .review-tab-btn.active {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(74, 120, 176, .14);
   border-color: rgba(74, 120, 176, .32);
 }
 
 .app .review-system-container .trace-node {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(255, 255, 255, .48);
-  border-color: var(--hl-divider);
+  border-color: var(--hive-ui-divider);
   border-radius: 14px;
 }
 
 .app .review-system-container .trace-title {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .trace-step-carousel {
@@ -1302,7 +1302,7 @@
 
 .trace-step-carousel .trace-duration {
   flex: 0 0 auto;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   font-size: 11px;
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
@@ -1315,15 +1315,15 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .68);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .trace-step-nav:hover:not(:disabled) {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .12);
   border-color: rgba(74, 120, 176, .32);
 }
@@ -1341,7 +1341,7 @@
 .trace-step-position {
   grid-column: 2;
   justify-self: center;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
@@ -1360,13 +1360,13 @@
 }
 
 .active-run-overview-grid > .executor-output-card {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38)) !important;
-  border: 1px solid var(--hl-glass-border) !important;
-  border-radius: var(--hl-radius) !important;
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border) !important;
+  border-radius: var(--hive-ui-radius) !important;
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .rubric-carousel {
@@ -1401,15 +1401,15 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .68);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .rubric-carousel-nav:hover:not(:disabled) {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .12);
   border-color: rgba(74, 120, 176, .32);
 }
@@ -1427,7 +1427,7 @@
 .rubric-carousel-position {
   grid-column: 2;
   justify-self: center;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   font-size: 11px;
   font-variant-numeric: tabular-nums;
 }
@@ -1479,11 +1479,11 @@
   min-width: 0;
   padding: 16px;
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38));
-  border: 1px solid var(--hl-glass-border);
-  border-radius: var(--hl-radius);
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border);
+  border-radius: var(--hive-ui-radius);
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .committee-agent-card {
@@ -1504,12 +1504,12 @@
 }
 
 .committee-trade-card > span {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   font-size: 16px !important;
 }
 
 .committee-trade-card > div > span {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
   background: rgba(74, 120, 176, .12) !important;
   font-size: 11px !important;
   padding: 3px 8px !important;
@@ -1521,14 +1521,14 @@
 }
 
 .committee-trade-card h3 {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
   font-size: clamp(20px, 2vw, 26px) !important;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 .committee-trade-card p:first-of-type {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   font-size: 14px !important;
   line-height: 1.45;
 }
@@ -1538,14 +1538,14 @@
 }
 
 .committee-trade-card p:last-of-type {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   font-size: 13px !important;
   line-height: 1.45;
   overflow-wrap: anywhere;
 }
 
 .committee-trade-card > div[style*="font-size: 12px"] {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   font-size: 13px !important;
   line-height: 1.45;
 }
@@ -1570,26 +1570,26 @@
 }
 
 .committee-agent-heading b {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   font-size: 16px;
 }
 
 .committee-agent-heading span {
   flex: 0 0 auto;
   padding: 2px 6px;
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .12);
   border-radius: 4px;
   font-size: 10px;
 }
 
 .committee-agent-value {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   font-size: 14px;
 }
 
 .committee-agent-description {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -1601,15 +1601,15 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .68);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 50%;
   cursor: pointer;
 }
 
 .committee-agent-nav:hover {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .12);
   border-color: rgba(74, 120, 176, .32);
 }
@@ -1622,7 +1622,7 @@
 .committee-agent-position {
   grid-column: 2;
   justify-self: center;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
@@ -1634,7 +1634,7 @@
 }
 
 .committee-risk-audit > span {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   font-size: 16px !important;
 }
 
@@ -1645,7 +1645,7 @@
 }
 
 .committee-risk-audit > div[style*="align-items: flex-start"] > div > div {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   font-size: 12px !important;
   line-height: 1.45;
   overflow-wrap: anywhere;
@@ -1668,14 +1668,14 @@
 .app .review-system-container .review-symbol-select,
 .app .review-system-container .review-prompt-input,
 .app .review-system-container input[type="date"] {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
   background: rgba(255, 255, 255, .82) !important;
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
   border-radius: 10px !important;
 }
 
 .app .review-system-container input::placeholder {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .agent-center-grid {
@@ -1694,7 +1694,7 @@
 
 .app .portfolio-risk-card > h2,
 .app .portfolio-order-ledger-card h2 {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .order-ledger-heading {
@@ -1712,7 +1712,7 @@
 .order-ledger-expand {
   flex: 0 0 auto;
   padding: 7px 10px;
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .1);
   border: 1px solid rgba(74, 120, 176, .25);
   border-radius: 9px;
@@ -1738,7 +1738,7 @@
   width: min(760px, 100%);
   flex-direction: column;
   gap: 16px;
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
 }
 
 .order-ledger-dialog .card-title {
@@ -1746,12 +1746,12 @@
 }
 
 .order-ledger-dialog .card-title h2 {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
 }
 
 .order-ledger-dialog .card-title p {
   margin-top: 4px;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
 }
 
 .order-ledger-full-list {
@@ -1771,12 +1771,12 @@
 }
 
 .order-ledger-full-list .timeline b {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
 }
 
 .order-ledger-full-list .timeline p {
   margin-top: 4px;
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   overflow-wrap: anywhere;
 }
 
@@ -1799,11 +1799,11 @@
 
 .app .review-system-container [style*="color: rgb(248, 250, 252)"],
 .app .review-system-container [style*="color: rgb(226, 232, 240)"] {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .review-system-container [style*="color: rgb(203, 213, 225)"] {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .review-system-container [style*="color: rgb(197, 208, 234)"],
@@ -1811,36 +1811,36 @@
 .app .review-system-container [style*="color: rgb(136, 153, 172)"],
 .app .review-system-container [style*="color: rgb(122, 136, 155)"],
 .app .review-system-container [style*="color: rgb(100, 116, 139)"] {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .review-system-container button[style*="background: rgba(59, 130, 246, 0.2)"] {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
   background: rgba(74, 120, 176, .14) !important;
   border-color: rgba(74, 120, 176, .32) !important;
 }
 
 .app .review-system-container button[style*="background: rgba(255, 255, 255, 0.04)"] {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
   background: rgba(255, 255, 255, .55) !important;
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
 }
 
 .app .review-system-container .review-model-bar > div > span[style*="background: rgba(59, 130, 246"] {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
 }
 
 .app .review-analytics-banner,
 .app .review-analytics-panel,
 .app .review-queue-header,
 .app .review-queue-card {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38)) !important;
-  border: 1px solid var(--hl-glass-border) !important;
-  border-radius: var(--hl-radius) !important;
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border) !important;
+  border-radius: var(--hive-ui-radius) !important;
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .review-queue-card.promoted {
@@ -1856,7 +1856,7 @@
 .app .review-queue-verdict {
   margin-top: 8px;
   padding: 7px 10px;
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(74, 120, 176, .08);
   border: 1px solid rgba(74, 120, 176, .16);
   border-radius: 8px;
@@ -1865,14 +1865,14 @@
 }
 
 .app .review-queue-verdict b {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
 }
 
 .app .review-analytics-stat,
 .app .review-analytics-failure {
-  color: var(--hl-ink-soft);
+  color: var(--hive-ui-ink-soft);
   background: rgba(255, 255, 255, .56) !important;
-  border: 1px solid var(--hl-divider) !important;
+  border: 1px solid var(--hive-ui-divider) !important;
   border-radius: 14px !important;
   box-shadow: 0 8px 20px rgba(15, 27, 49, .04);
 }
@@ -1881,12 +1881,12 @@
 .app .review-analytics-tab [style*="color: rgb(226, 232, 240)"],
 .app .review-queue-tab [style*="color: rgb(248, 250, 252)"],
 .app .review-queue-tab [style*="color: rgb(226, 232, 240)"] {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .review-analytics-tab [style*="color: rgb(203, 213, 225)"],
 .app .review-queue-tab [style*="color: rgb(203, 213, 225)"] {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .review-analytics-tab [style*="color: rgb(197, 208, 234)"],
@@ -1895,13 +1895,13 @@
 .app .review-queue-tab [style*="color: rgb(197, 208, 234)"],
 .app .review-queue-tab [style*="color: rgb(148, 163, 184)"],
 .app .review-queue-tab [style*="color: rgb(100, 116, 139)"] {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .review-analytics-tab [style*="color: rgb(167, 139, 250)"],
 .app .review-analytics-tab [style*="color: rgb(56, 189, 248)"],
 .app .review-queue-tab [style*="color: rgb(167, 139, 250)"] {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
 }
 
 .app .review-analytics-tab [style*="color: rgb(16, 185, 129)"],
@@ -1925,18 +1925,18 @@
 
 .app .review-analytics-banner code,
 .app .review-queue-tab .review-proposal-mode {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
   background: rgba(74, 120, 176, .1) !important;
   border: 1px solid rgba(74, 120, 176, .18);
   border-radius: 6px !important;
 }
 
 .app .review-analytics-banner > div > div:first-child > svg {
-  stroke: var(--hl-accent);
+  stroke: var(--hive-ui-accent);
 }
 
 .app .review-queue-tab .review-proposal-status {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
   background: rgba(74, 120, 176, .12) !important;
   border: 1px solid rgba(74, 120, 176, .22);
   border-radius: 999px !important;
@@ -1964,9 +1964,9 @@
 
 .app .review-queue-hypothesis,
 .app .review-queue-tab .diff-box {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(255, 255, 255, .52) !important;
-  border: 1px solid var(--hl-divider) !important;
+  border: 1px solid var(--hive-ui-divider) !important;
   border-radius: 12px !important;
 }
 
@@ -1974,23 +1974,23 @@
 .app .review-queue-tab .benchmark-compare-table td,
 .app .review-analytics-tab .benchmark-compare-table th,
 .app .review-analytics-tab .benchmark-compare-table td {
-  color: var(--hl-ink-soft);
-  border-color: var(--hl-divider);
+  color: var(--hive-ui-ink-soft);
+  border-color: var(--hive-ui-divider);
 }
 
 .app .review-queue-tab .benchmark-compare-table th {
-  color: var(--hl-muted);
+  color: var(--hive-ui-muted);
   background: rgba(74, 120, 176, .08);
 }
 
 .app .review-queue-tab .btn-benchmark {
-  color: var(--hl-accent);
+  color: var(--hive-ui-accent);
   background: rgba(74, 120, 176, .1);
   border-color: rgba(74, 120, 176, .22);
 }
 
 .app .review-queue-tab .btn-benchmark:hover:not(:disabled) {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(74, 120, 176, .18);
   border-color: rgba(74, 120, 176, .32);
 }
@@ -2023,17 +2023,17 @@
 }
 
 .app .review-system-container .review-scorecard {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(255, 255, 255, .38)) !important;
-  border: 1px solid var(--hl-glass-border) !important;
-  border-radius: var(--hl-radius) !important;
-  box-shadow: var(--hl-shadow);
-  -webkit-backdrop-filter: blur(var(--hl-blur)) saturate(112%);
-  backdrop-filter: blur(var(--hl-blur)) saturate(112%);
+  border: 1px solid var(--hive-ui-glass-border) !important;
+  border-radius: var(--hive-ui-radius) !important;
+  box-shadow: var(--hive-ui-shadow);
+  -webkit-backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
+  backdrop-filter: blur(var(--hive-ui-blur)) saturate(112%);
 }
 
 .app .review-scorecard > div:first-child > div > span {
-  color: var(--hl-ink) !important;
+  color: var(--hive-ui-ink) !important;
 }
 
 .app .review-scorecard .review-verdict {
@@ -2053,19 +2053,19 @@
 }
 
 .app .review-scorecard .rubric-card {
-  color: var(--hl-ink);
+  color: var(--hive-ui-ink);
   background: rgba(255, 255, 255, .56);
-  border: 1px solid var(--hl-divider);
+  border: 1px solid var(--hive-ui-divider);
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(15, 27, 49, .04);
 }
 
 .app .review-scorecard .rubric-card-top > span:first-child {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
 }
 
 .app .review-scorecard .review-criterion-status {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .review-scorecard .review-check.pass {
@@ -2081,7 +2081,7 @@
 }
 
 .app .review-scorecard .rubric-card > span:nth-of-type(2) {
-  color: var(--hl-muted-secondary) !important;
+  color: var(--hive-ui-muted-secondary) !important;
 }
 
 .app .review-scorecard .rubric-score.high {
@@ -2097,18 +2097,18 @@
 }
 
 .app .review-scorecard .review-objective-checks {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(74, 120, 176, .07) !important;
-  border-color: var(--hl-divider) !important;
+  border-color: var(--hive-ui-divider) !important;
   border-radius: 12px !important;
 }
 
 .app .review-scorecard .review-objective-checks > div:first-child {
-  color: var(--hl-muted) !important;
+  color: var(--hive-ui-muted) !important;
 }
 
 .app .review-scorecard .review-finding {
-  color: var(--hl-ink-soft) !important;
+  color: var(--hive-ui-ink-soft) !important;
   background: rgba(185, 120, 22, .08) !important;
   border-color: rgba(185, 120, 22, .2) !important;
   border-radius: 10px !important;
@@ -2119,70 +2119,70 @@
 }
 
 .app .review-scorecard .review-finding-recommendation {
-  color: var(--hl-accent) !important;
+  color: var(--hive-ui-accent) !important;
 }
 
 
 /* ==========================================================================
-   SYNQ PRECISION GLASS — AI REVIEW & CONTINUOUS IMPROVEMENT SUITE ADAPTATION
+   HIVE PRECISION GLASS — AI REVIEW & CONTINUOUS IMPROVEMENT SUITE ADAPTATION
    ========================================================================== */
 
 .app .review-system-container {
-  color: var(--synq-text-primary, #0B1730);
+  color: var(--hive-text-primary, #0B1730);
 }
 
 .app .review-system-container .review-model-bar {
-  background: var(--synq-glass-primary, rgba(255, 255, 255, 0.72)) !important;
-  border: 1px solid var(--synq-border-subtle, rgba(255, 255, 255, 0.82)) !important;
+  background: var(--hive-glass-primary, rgba(255, 255, 255, 0.72)) !important;
+  border: 1px solid var(--hive-border-subtle, rgba(255, 255, 255, 0.82)) !important;
   border-radius: var(--radius-xl, 20px) !important;
-  box-shadow: var(--synq-shadow-glass) !important;
+  box-shadow: var(--hive-shadow-glass) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  color: var(--synq-text-primary, #0B1730) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   padding: 14px 22px;
 }
 
 .app .review-system-container .review-model-chip {
   background: rgba(255, 255, 255, 0.65) !important;
-  border: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
-  color: var(--synq-text-primary, #0B1730) !important;
+  border: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   border-radius: var(--radius-pill, 9999px) !important;
   padding: 5px 12px;
   font-size: 11px;
   font-family: var(--font-family-mono, monospace);
   font-weight: 500;
-  box-shadow: var(--synq-shadow-sm);
+  box-shadow: var(--hive-shadow-sm);
 }
 
 .app .review-system-container .review-model-chip.active {
-  border-color: var(--synq-success-border, rgba(22, 133, 104, 0.28)) !important;
-  background: var(--synq-success-bg, rgba(22, 133, 104, 0.12)) !important;
-  color: var(--synq-success, #168568) !important;
+  border-color: var(--hive-success-border, rgba(22, 133, 104, 0.28)) !important;
+  background: var(--hive-success-bg, rgba(22, 133, 104, 0.12)) !important;
+  color: var(--hive-success, #168568) !important;
   font-weight: 600;
 }
 
 .app .review-system-container .review-model-chip.reviewer {
-  border-color: var(--synq-info-border, rgba(71, 124, 185, 0.28)) !important;
-  background: var(--synq-info-bg, rgba(71, 124, 185, 0.12)) !important;
-  color: var(--synq-blue-accent, #4B7FBD) !important;
+  border-color: var(--hive-info-border, rgba(71, 124, 185, 0.28)) !important;
+  background: var(--hive-info-bg, rgba(71, 124, 185, 0.12)) !important;
+  color: var(--hive-blue-accent, #4B7FBD) !important;
   font-weight: 600;
 }
 
 .app .review-system-container .review-model-chip.vram {
-  border-color: var(--synq-warning-border, rgba(183, 121, 31, 0.28)) !important;
-  background: var(--synq-warning-bg, rgba(183, 121, 31, 0.12)) !important;
-  color: var(--synq-warning, #B7791F) !important;
+  border-color: var(--hive-warning-border, rgba(183, 121, 31, 0.28)) !important;
+  background: var(--hive-warning-bg, rgba(183, 121, 31, 0.12)) !important;
+  color: var(--hive-warning, #B7791F) !important;
   font-weight: 600;
 }
 
 .app .review-system-container .review-tab-nav {
-  border-bottom: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
+  border-bottom: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
   padding-bottom: 8px;
   gap: 8px;
 }
 
 .app .review-system-container .review-tab-btn {
-  color: var(--synq-text-secondary, #5E6F8F) !important;
+  color: var(--hive-text-secondary, #5E6F8F) !important;
   font-size: 13px;
   font-weight: 500;
   border-radius: var(--radius-md, 12px) !important;
@@ -2191,12 +2191,12 @@
 }
 
 .app .review-system-container .review-tab-btn:hover {
-  color: var(--synq-text-primary, #0B1730) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   background: rgba(255, 255, 255, 0.75) !important;
 }
 
 .app .review-system-container .review-tab-btn.active {
-  color: var(--synq-text-primary, #0B1730) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   background: rgba(75, 127, 189, 0.14) !important;
   border: 1px solid rgba(75, 127, 189, 0.28) !important;
   font-weight: 600;
@@ -2204,10 +2204,10 @@
 }
 
 .app .review-system-container .review-trigger-panel {
-  background: var(--synq-glass-primary, rgba(255, 255, 255, 0.72)) !important;
-  border: 1px solid var(--synq-border-subtle, rgba(255, 255, 255, 0.82)) !important;
+  background: var(--hive-glass-primary, rgba(255, 255, 255, 0.72)) !important;
+  border: 1px solid var(--hive-border-subtle, rgba(255, 255, 255, 0.82)) !important;
   border-radius: var(--radius-xl, 20px) !important;
-  box-shadow: var(--synq-shadow-glass) !important;
+  box-shadow: var(--hive-shadow-glass) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -2215,8 +2215,8 @@
 .app .review-system-container .review-symbol-select,
 .app .review-system-container .review-prompt-input {
   background: #FFFFFF !important;
-  border: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
-  color: var(--synq-text-primary, #0B1730) !important;
+  border: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   border-radius: var(--radius-md, 12px) !important;
   padding: 9px 14px;
   font-size: 13px;
@@ -2226,7 +2226,7 @@
 .app .review-system-container .review-run-btn,
 .app .review-system-container .btn-primary,
 .app .review-system-container button.primary {
-  background: var(--synq-navy-deep, #0B1730) !important;
+  background: var(--hive-navy-deep, #0B1730) !important;
   color: #FFFFFF !important;
   border: none !important;
   border-radius: var(--radius-md, 12px) !important;
@@ -2238,7 +2238,7 @@
 
 .app .review-system-container .review-run-btn:hover:not(:disabled),
 .app .review-system-container .btn-primary:hover:not(:disabled) {
-  background: var(--synq-navy-mid, #1B3A6B) !important;
+  background: var(--hive-navy-mid, #1B3A6B) !important;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(11, 23, 48, 0.20) !important;
 }
@@ -2246,30 +2246,30 @@
 /* Prompt Proposals, Diff Boxes & Benchmark Tables */
 .app .proposal-card,
 .app .review-queue-card {
-  color: var(--synq-text-primary, #0B1730) !important;
-  background: var(--synq-glass-primary, rgba(255, 255, 255, 0.72)) !important;
-  border: 1px solid var(--synq-border-subtle, rgba(255, 255, 255, 0.82)) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
+  background: var(--hive-glass-primary, rgba(255, 255, 255, 0.72)) !important;
+  border: 1px solid var(--hive-border-subtle, rgba(255, 255, 255, 0.82)) !important;
   border-radius: var(--radius-xl, 20px) !important;
-  box-shadow: var(--synq-shadow-glass) !important;
+  box-shadow: var(--hive-shadow-glass) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 20px;
 }
 
 .app .proposal-card.promoted {
-  border-color: var(--synq-success-border, rgba(22, 133, 104, 0.35)) !important;
+  border-color: var(--hive-success-border, rgba(22, 133, 104, 0.35)) !important;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(22, 133, 104, 0.05)) !important;
 }
 
 .app .proposal-card.rejected {
-  border-color: var(--synq-error-border, rgba(200, 77, 91, 0.35)) !important;
+  border-color: var(--hive-error-border, rgba(200, 77, 91, 0.35)) !important;
   opacity: 0.85;
 }
 
 .app .diff-box {
   background: rgba(243, 246, 251, 0.90) !important;
-  border: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
-  color: var(--synq-text-primary, #0B1730) !important;
+  border: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   border-radius: var(--radius-md, 12px) !important;
   padding: 12px 16px;
   font-family: var(--font-family-mono, monospace) !important;
@@ -2278,13 +2278,13 @@
 }
 
 .app .benchmark-compare-table {
-  color: var(--synq-text-primary, #0B1730) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
   border-collapse: collapse;
 }
 
 .app .benchmark-compare-table th {
-  color: var(--synq-text-muted, #7D8BA5) !important;
-  border-bottom: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-muted, #7D8BA5) !important;
+  border-bottom: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
   padding: 8px 12px;
   font-size: 11px;
   text-transform: uppercase;
@@ -2292,14 +2292,14 @@
 }
 
 .app .benchmark-compare-table td {
-  color: var(--synq-text-primary, #0B1730) !important;
-  border-bottom: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
+  border-bottom: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
   padding: 10px 12px;
   font-variant-numeric: tabular-nums;
 }
 
 .app .btn-approve {
-  background: var(--synq-success, #168568) !important;
+  background: var(--hive-success, #168568) !important;
   color: #FFFFFF !important;
   border: none !important;
   border-radius: 10px !important;
@@ -2316,7 +2316,7 @@
 
 .app .btn-benchmark {
   background: rgba(75, 127, 189, 0.12) !important;
-  color: var(--synq-blue-accent, #4B7FBD) !important;
+  color: var(--hive-blue-accent, #4B7FBD) !important;
   border: 1px solid rgba(75, 127, 189, 0.28) !important;
   border-radius: 10px !important;
   padding: 8px 16px;
@@ -2326,14 +2326,14 @@
 
 .app .btn-benchmark:hover:not(:disabled) {
   background: rgba(75, 127, 189, 0.20) !important;
-  border-color: var(--synq-blue-accent, #4B7FBD) !important;
+  border-color: var(--hive-blue-accent, #4B7FBD) !important;
   transform: translateY(-1px);
 }
 
 .app .btn-reject {
-  background: var(--synq-error-bg, rgba(200, 77, 91, 0.12)) !important;
-  color: var(--synq-error, #C84D5B) !important;
-  border: 1px solid var(--synq-error-border, rgba(200, 77, 91, 0.28)) !important;
+  background: var(--hive-error-bg, rgba(200, 77, 91, 0.12)) !important;
+  color: var(--hive-error, #C84D5B) !important;
+  border: 1px solid var(--hive-error-border, rgba(200, 77, 91, 0.28)) !important;
   border-radius: 10px !important;
   padding: 8px 16px;
   font-weight: 600;
@@ -2346,9 +2346,9 @@
 }
 
 .app .btn-rollback {
-  background: var(--synq-warning-bg, rgba(183, 121, 31, 0.12)) !important;
-  color: var(--synq-warning, #B7791F) !important;
-  border: 1px solid var(--synq-warning-border, rgba(183, 121, 31, 0.28)) !important;
+  background: var(--hive-warning-bg, rgba(183, 121, 31, 0.12)) !important;
+  color: var(--hive-warning, #B7791F) !important;
+  border: 1px solid var(--hive-warning-border, rgba(183, 121, 31, 0.28)) !important;
   border-radius: 10px !important;
   padding: 8px 16px;
   font-weight: 600;
@@ -2363,26 +2363,26 @@
 /* Prompt Versions Table & Active Version Banner */
 .app .active-prompt-banner,
 .app div[style*="background: rgba(30, 41, 59"] {
-  color: var(--synq-text-primary, #0B1730) !important;
-  background: var(--synq-glass-primary, rgba(255, 255, 255, 0.72)) !important;
-  border: 1px solid var(--synq-border-subtle, rgba(255, 255, 255, 0.82)) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
+  background: var(--hive-glass-primary, rgba(255, 255, 255, 0.72)) !important;
+  border: 1px solid var(--hive-border-subtle, rgba(255, 255, 255, 0.82)) !important;
   border-radius: var(--radius-xl, 20px) !important;
-  box-shadow: var(--synq-shadow-glass) !important;
+  box-shadow: var(--hive-shadow-glass) !important;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 .app .prompt-versions-table {
-  color: var(--synq-text-primary, #0B1730) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
 }
 
 .app .prompt-versions-table th {
-  color: var(--synq-text-muted, #7D8BA5) !important;
-  border-bottom: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-muted, #7D8BA5) !important;
+  border-bottom: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
 }
 
 .app .prompt-versions-table td {
-  color: var(--synq-text-primary, #0B1730) !important;
-  border-bottom: 1px solid var(--synq-border-neutral, #D8E2EF) !important;
+  color: var(--hive-text-primary, #0B1730) !important;
+  border-bottom: 1px solid var(--hive-border-neutral, #D8E2EF) !important;
   font-variant-numeric: tabular-nums;
 }

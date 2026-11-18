@@ -1,10 +1,10 @@
 """
-SYNQ — 0xramm Indian Stock Market API Provisional REST Market-Data Adapter
+HIVE — 0xramm Indian Stock Market API Provisional REST Market-Data Adapter
 Provides isolated REST-based market-data polling backed by the reviewed 0xramm/Indian-Stock-Market-API.
 
 Educational research & paper trading only.
 Does NOT claim exchange-grade real-time data or verified streaming OHLCV.
-Strictly adheres to SYNQ's LIVE_ONLY data integrity invariants.
+Strictly adheres to HIVE's LIVE_ONLY data integrity invariants.
 """
 
 import math

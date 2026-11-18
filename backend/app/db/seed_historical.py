@@ -29,7 +29,7 @@ def seed_verified_historical_datasets(db: Session) -> list[dict[str, Any]]:
     """
     results = []
     if not os.path.exists(HISTORICAL_DATA_DIR):
-        logger.warning(f"Historical data directory not found at: {HISTORICAL_DATA_DIR}")
+        logger.info("No local historical archive is installed.")
         return results
 
     for item in PRESET_HISTORICAL_SYMBOLS:
