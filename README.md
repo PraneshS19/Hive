@@ -4,6 +4,10 @@
 
 HIVE is a local-first application for evaluating AI agents in financial research and paper trading. A configured executor analyzes market evidence. A separate reviewer evaluates the executor’s recorded output. Python checks verify citations, supported numerical claims, and risk constraints independently of model opinions. Prompt changes move through paired benchmarking and explicit operator approval before activation.
 
+An apparently plausible answer can cite missing evidence or misstate a risk limit. A separate reviewer adds a second assessment, while deterministic checks catch errors with reproducible rules and the operator decides whether a candidate prompt becomes active. Financial research supplies structured evidence and measurable constraints. Paper trading and isolated backtests let users inspect the consequences without routing real-money orders.
+
+See the [demo walkthrough](docs/DEMO.md) for an end-to-end run, genuine screenshots from a fresh demonstration session, and the recorded benchmark case that blocked promotion.
+
 ## Architecture
 
 ```mermaid
@@ -25,9 +29,13 @@ flowchart LR
 
 The frontend lives in `src`. FastAPI routes live in `backend/app/api/routes`. The LangGraph workflows, Ollama client, objective checks, and benchmark rubric live in `backend/app/review`. SQLite models live in `backend/app/db/models`. Market evidence, the isolated backtest engine, and order settlement have separate modules.
 
+The supported local setup uses a single backend worker. Browser refresh can reconnect to persisted run history. On backend restart, unfinished research is marked failed and any archived evidence stays available. An interrupted benchmark leaves the previously committed trial and proposal status intact. Start another trial explicitly when ready.
+
 ## Start on Windows PowerShell
 
 Use Python 3.11, Node 24, npm, and Ollama. Run these commands from the source checkout.
+
+The two quantized models run sequentially with a default keep-alive of zero, which avoids keeping both models resident at once. Cold starts and CPU inference can take longer. Adjust `HIVE_MODEL_TIMEOUT_SECONDS` if needed and check model readiness before starting a demonstration.
 
 ```powershell
 npm.cmd ci
@@ -133,3 +141,5 @@ GitHub withdrew Picomatch advisory `GHSA-fc5q-39xc-vjpf` on November 18, 2026. B
 ## Licensing
 
 HIVE is available as public source. The project owner has yet to select a project-wide open-source license. Third-party dependencies retain their own licenses. See [third-party references and notices](docs/OPEN_SOURCE_REUSE.md).
+
+Use GitHub issues to report reproducible behavior with the commit, environment, and expected result. Keep credentials, local databases, provider archives, and raw model traces out of public reports.

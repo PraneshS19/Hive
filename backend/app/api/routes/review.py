@@ -1,5 +1,7 @@
 import json
+from asyncio import CancelledError
 from datetime import UTC, datetime
+from hashlib import sha256
 from typing import Any
 from uuid import uuid4
 
@@ -21,6 +23,7 @@ from app.review.benchmark import benchmark_suite
 from app.review.execution_graph import execution_review_graph
 from app.review.improvement_graph import continuous_improvement_graph
 from app.review.model_client import review_model_client
+from app.review.operations import mark_interrupted_runs, single_operation
 from app.review.prompts import (
     EXECUTOR_SYSTEM_PROMPT_V1,
     compute_prompt_hash,
@@ -119,19 +122,22 @@ async def create_agent_run(
         "error_message": None
     }
 
-    try:
-        await execution_review_graph.ainvoke(initial_state)
-    except Exception:
-        logger.exception(f"Research run {run_id} failed")
-        db.rollback()
-        run = db.query(ReviewRun).filter_by(run_id=run_id).first()
-        if run:
-            run.status = "FAILED"
-            run.review_verdict = "ERROR"
-            run.error_message = "Research execution failed. See the local application log."
-            run.completed_at = datetime.now(UTC)
-            db.commit()
-        raise HTTPException(status_code=500, detail=f"Research execution failed for {run_id}.")
+    request_key = sha256(payload.model_copy(update={
+        "symbol": symbol,
+        "replay_cutoff": replay_cutoff.astimezone(UTC) if replay_cutoff else None,
+    }).model_dump_json().encode()).hexdigest()
+    with single_operation("research request", request_key):
+        try:
+            await execution_review_graph.ainvoke(initial_state)
+        except CancelledError:
+            db.rollback()
+            mark_interrupted_runs(db, "Research was interrupted before it completed.", run_id)
+            raise
+        except Exception:
+            logger.exception(f"Research run {run_id} failed")
+            db.rollback()
+            mark_interrupted_runs(db, "Research execution failed. See the local application log.", run_id)
+            raise HTTPException(status_code=500, detail=f"Research execution failed for {run_id}.")
 
     r = db.query(ReviewRun).filter(ReviewRun.run_id == run_id).first()
     if not r:
@@ -206,6 +212,7 @@ def list_agent_runs(
             objective_pass_pct=_compute_run_objective_pass_pct(checks),
             objective_checks=checks,
             findings_count=finding_counts.get(r.run_id, 0),
+            error_message=r.error_message,
             created_at=r.created_at.isoformat() if r.created_at else "",
             completed_at=r.completed_at.isoformat() if r.completed_at else None
         ))
@@ -400,12 +407,12 @@ async def generate_improvement_proposal_endpoint(db: Session = Depends(get_db)):
         "error_message": None
     }
 
-    try:
-        final_state = await continuous_improvement_graph.ainvoke(initial_state)
-    except Exception as e:
-        logger.exception("Unexpected failure at the service boundary")
-        logger.error(f"Continuous improvement graph error: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+    with single_operation("proposal generation", "queue"):
+        try:
+            final_state = await continuous_improvement_graph.ainvoke(initial_state)
+        except Exception as error:
+            logger.exception("Continuous improvement graph failed")
+            raise HTTPException(500, "Proposal generation failed. See the local application log.") from error
 
     if not final_state.get("sample_sufficient", False):
         raise HTTPException(
@@ -633,41 +640,42 @@ async def run_proposal_benchmark(
     mode: str = Query("real_llm", pattern=r"^(auto|real_llm)$"),
     db: Session = Depends(get_db),
 ):
-    proposal = get_proposal(db, proposal_id)
-    if proposal.status not in ("DRAFT", "BENCHMARKED", "PENDING_APPROVAL"):
-        raise HTTPException(409, "This proposal cannot be benchmarked in its current state.")
-    baseline = executor_version(db, proposal.baseline_version)
-    candidate = json.loads(proposal.proposed_change_json).get("updated_system_prompt")
-    if not baseline.is_active or not candidate or candidate == baseline.system_prompt:
-        raise HTTPException(409, "The active baseline and a distinct candidate are required.")
-    base_prompt, base_version, candidate_version = baseline.system_prompt, baseline.version_tag, proposal.candidate_version
-    previous_status, previous_results = proposal.status, proposal.benchmark_results_json
-    db.rollback()
+    with single_operation("proposal benchmark", proposal_id):
+        proposal = get_proposal(db, proposal_id)
+        if proposal.status not in ("DRAFT", "BENCHMARKED", "PENDING_APPROVAL"):
+            raise HTTPException(409, "This proposal cannot be benchmarked in its current state.")
+        baseline = executor_version(db, proposal.baseline_version)
+        candidate = json.loads(proposal.proposed_change_json).get("updated_system_prompt")
+        if not baseline.is_active or not candidate or candidate == baseline.system_prompt:
+            raise HTTPException(409, "The active baseline and a distinct candidate are required.")
+        base_prompt, base_version, candidate_version = baseline.system_prompt, baseline.version_tag, proposal.candidate_version
+        previous_status, previous_results = proposal.status, proposal.benchmark_results_json
+        db.rollback()
 
-    health = await review_model_client.get_model_status()
-    if not health["executor_installed"]:
-        detail = " ".join([health["status_message"], *health["pull_commands"]])
-        raise HTTPException(503, detail)
-    baseline_result = await benchmark_suite.run_llm_benchmark(base_prompt, version_tag=base_version)
-    candidate_result = await benchmark_suite.run_llm_benchmark(candidate, version_tag=candidate_version)
-    comparison = benchmark_suite.compare_benchmarks(baseline_result, candidate_result)
-    trial_id = str(uuid4())
-    artifacts = {"trial_id": trial_id, "baseline": baseline_result, "candidate": candidate_result, "comparison": comparison}
+        health = await review_model_client.get_model_status()
+        if not health["executor_installed"]:
+            detail = " ".join([health["status_message"], *health["pull_commands"]])
+            raise HTTPException(503, detail)
+        baseline_result = await benchmark_suite.run_llm_benchmark(base_prompt, version_tag=base_version)
+        candidate_result = await benchmark_suite.run_llm_benchmark(candidate, version_tag=candidate_version)
+        comparison = benchmark_suite.compare_benchmarks(baseline_result, candidate_result)
+        trial_id = str(uuid4())
+        artifacts = {"trial_id": trial_id, "baseline": baseline_result, "candidate": candidate_result, "comparison": comparison}
 
-    begin_operator_action(db)
-    proposal = get_proposal(db, proposal_id)
-    if proposal.status != previous_status or proposal.benchmark_results_json != previous_results:
-        raise HTTPException(409, "Proposal changed while benchmarking.")
-    proposal.benchmark_results_json = json.dumps(artifacts)
-    db.add(BenchmarkTrialRecord(
-        id=trial_id, proposal_id=proposal.proposal_id, artifacts_json=proposal.benchmark_results_json,
-    ))
-    proposal.status = {
-        "PROMOTION_READY": "ELIGIBLE", "REJECT": "REJECTED",
-    }.get(comparison["decision"], "BENCHMARKED")
-    proposal.updated_at = datetime.now(UTC)
-    db.commit()
-    return {"proposal_id": proposal_id, **artifacts}
+        begin_operator_action(db)
+        proposal = get_proposal(db, proposal_id)
+        if proposal.status != previous_status or proposal.benchmark_results_json != previous_results:
+            raise HTTPException(409, "Proposal changed while benchmarking.")
+        proposal.benchmark_results_json = json.dumps(artifacts)
+        db.add(BenchmarkTrialRecord(
+            id=trial_id, proposal_id=proposal.proposal_id, artifacts_json=proposal.benchmark_results_json,
+        ))
+        proposal.status = {
+            "PROMOTION_READY": "ELIGIBLE", "REJECT": "REJECTED",
+        }.get(comparison["decision"], "BENCHMARKED")
+        proposal.updated_at = datetime.now(UTC)
+        db.commit()
+        return {"proposal_id": proposal_id, **artifacts}
 
 
 @router.get("/improvement-proposals/{proposal_id}/benchmarks")

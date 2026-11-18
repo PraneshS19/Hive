@@ -8,7 +8,9 @@ from app.api.router import api_router
 from app.core.config import settings
 from app.core.errors import HiveError
 from app.core.logging import logger
+from app.db import session
 from app.db.init_db import init_db
+from app.review.operations import mark_interrupted_runs
 
 
 @asynccontextmanager
@@ -16,6 +18,8 @@ async def lifespan(app: FastAPI):
     # Startup: Initialize DB and seed default records
     logger.info("Initializing HIVE database and baseline data...")
     init_db(seed_historical=True)
+    with session.SessionLocal() as db:
+        mark_interrupted_runs(db, "Research was interrupted by a backend restart. Recorded evidence remains available.")
 
     # Start active market feed if configured and enabled
     try:

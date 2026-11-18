@@ -318,7 +318,10 @@ export function ReviewCenter({
     setTimeout(() => setActionMessage(null), 3000);
   };
 
-  // Load initial data
+  const selectedRunId: string | undefined = selectedRun?.run_id;
+  const selectedRunStatus: string | undefined = selectedRun?.status;
+
+  // Refresh persisted status after navigating back or reloading during work.
   const loadData = useCallback(async () => {
     try {
       const [statusRes, runsRes, summaryRes, propsRes, versionsRes, activeVerRes] = await Promise.allSettled([
@@ -333,10 +336,13 @@ export function ReviewCenter({
       if (statusRes.status === 'fulfilled') setModelStatus(statusRes.value);
       if (runsRes.status === 'fulfilled') {
         setRuns(runsRes.value);
-        if (runsRes.value.length > 0 && !selectedRun) {
-          // fetch detail of newest run
-          const detail = await api.getRunDetail(runsRes.value[0].run_id);
-          setSelectedRun(detail);
+        const summary = selectedRunId
+          ? runsRes.value.find(run => run.run_id === selectedRunId)
+          : runsRes.value[0];
+        if (summary && (!selectedRunId || summary.status !== selectedRunStatus)) {
+          const detail = await api.getRunDetail(summary.run_id);
+          setSelectedRun((current: typeof selectedRun) =>
+            current && current.run_id !== detail.run_id ? current : detail);
         }
       }
       if (summaryRes.status === 'fulfilled') setEvalSummary(summaryRes.value);
@@ -346,7 +352,7 @@ export function ReviewCenter({
     } catch (e) {
       console.error('Error loading review data:', e);
     }
-  }, [selectedRun]);
+  }, [selectedRunId, selectedRunStatus]);
 
   useEffect(() => {
     loadData();
@@ -649,6 +655,11 @@ export function ReviewCenter({
           )}
 
           {/* Active Run Overview Cards */}
+          {selectedRun && (
+            <p role="status">
+              Research status: {selectedRun.status}{selectedRun.error_message ? ` · ${selectedRun.error_message}` : ''}
+            </p>
+          )}
           {showAnswer && selectedRun ? (
             <div className="active-run-overview-grid">
               {/* Left Column: Executor Output & Evidence */}

@@ -43,6 +43,18 @@ try {
       { timeout: 250000 },
     );
     await page.getByRole('button', { name: 'Replay RELIANCE at Cutoff' }).click();
+    await page.waitForFunction(async () => {
+      const response = await fetch('/api/v1/agent-runs?limit=1');
+      return response.ok && (await response.json())[0]?.task_type === 'HISTORICAL_REPLAY';
+    }, undefined, { polling: 250, timeout: 10000 });
+    const refreshed = await browser.newPage();
+    await refreshed.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    try {
+      await refreshed.goto(`${origin}/app/agents`, { waitUntil: 'domcontentloaded' });
+      await refreshed.getByRole('status').filter({ hasText: /Research status: COMPLETED/ }).waitFor({ timeout: 230000 });
+    } finally {
+      await refreshed.close();
+    }
     const completed = await (await research).json();
     assert.equal(completed.status, 'COMPLETED', completed.error_message);
     assert.equal(completed.executor_model, 'qwen3.5:4b');
