@@ -1,6 +1,6 @@
 # HIVE release security assessment
 
-Assessed 18 November 2026. The inspected configuration supports a narrow security exception for a public source release intended for trusted local builds and static frontend deployment. The project owner accepted that exception on 18 November 2026. The development dependency still has the reported availability risk, and the full audit still fails.
+Assessed 18 November 2026 and refreshed 19 November 2026. The project owner accepted a narrow security exception for trusted local builds and static frontend deployment on 18 November. The development dependency still has the reported availability risk. The refreshed full and production-only npm audits both exited 0 with zero reported findings.
 
 ## Advisory and dependency paths
 
@@ -13,7 +13,7 @@ hive-research → vite@6.4.6 → tinyglobby@0.2.17 → picomatch@4.0.7
 hive-research → vite@6.4.6 → tinyglobby@0.2.17 → fdir@6.5.0 → picomatch@4.0.7 (optional peer)
 ```
 
-The full `npm audit` was refreshed after observing the withdrawal and still exited 1 with four high-severity entries for the advisory and three dependent packages. `npm audit --omit=dev` exited 0 with zero reported vulnerabilities in the root production dependency tree. The installed code and its availability risk are unchanged by the advisory withdrawal. The optional market data sidecar's tooling is outside this root-lockfile assessment.
+On 18 November, the full `npm audit` still exited 1 with four high-severity entries after the withdrawal. On 19 November, both `npm audit` and `npm audit --omit=dev` exited 0 with zero findings. The lockfile and installed Picomatch version remained unchanged. The feed change leaves the reported availability risk in place if untrusted glob patterns reach the parser. The optional market data sidecar's tooling is outside this root-lockfile assessment.
 
 At assessment time the registry's latest Picomatch release was `4.0.7`, the advisory listed no patched version, and the latest Vite release (`8.3.8`) still declared `picomatch ^4.0.7`. No compatible maintained replacement was verified. The earlier disposable trial of Vite `6.2.7` restored high-severity Vite findings. The existing dependency graph and audit reporting were preserved. [Upstream Picomatch releases](https://github.com/micromatch/picomatch/releases)
 
@@ -50,4 +50,4 @@ Monitor the upstream releases and npm advisory feed. When a supported patch is a
 
 ## Public source release verification
 
-The isolated source snapshot passed 223 backend tests in 9.03 seconds, with 14 tests deselected because the original market archives or local verification database were excluded. The full suite passed all 237 tests in 40.77 seconds in the development checkout with those prerequisites. The release snapshot passed Ruff, Python dependency consistency checking, the locked npm install, ESLint, TypeScript, and the production build. The build reported the existing bundle-size warning. The refreshed full npm audit reported four high-severity entries tied to the withdrawn advisory. The production-only npm audit reported zero vulnerabilities.
+The initial public source snapshot passed 223 backend tests in 9.03 seconds, with 14 tests deselected because the original market archives or local verification database were excluded. The full suite passed all 237 tests in 40.77 seconds in the development checkout with those prerequisites. The initial snapshot passed Ruff, Python dependency consistency checking, the locked npm install, ESLint, TypeScript, and the production build. The build reported the existing bundle-size warning. The 18 November full audit reported four high-severity entries tied to the withdrawn advisory. The production-only audit reported zero vulnerabilities.

@@ -17,7 +17,7 @@ import app.market.event_detector as ed_module
 import app.market.evidence_snapshot as ev_module
 import app.market.ramm_adapter as ramm_module
 from app.api.dependencies import get_db as dep_get_db
-from app.db.base import Base
+from app.db.base import Base, enforce_sqlite_foreign_keys
 from app.db.init_db import init_db
 from app.db.session import get_db as session_get_db
 from app.main import app
@@ -30,6 +30,7 @@ test_engine = create_engine(
     connect_args={"check_same_thread": False},
     poolclass=StaticPool,
 )
+enforce_sqlite_foreign_keys(test_engine)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
 

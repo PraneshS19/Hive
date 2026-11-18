@@ -141,7 +141,7 @@ The public source release uses a separate initial commit on `main`. The release 
 
 ## L. Remaining verification and release risks
 
-- The full npm audit still reports the development dependency advisory. Provider archives stay local because their redistribution rights remain unverified. Project license selection remains with the owner.
+- The Picomatch trusted-build security exception remains in effect. Provider archives stay local because their redistribution rights remain unverified. Project license selection remains with the owner.
 - Full provider-backed market data and real-time paper fills need an exchange-hour window and authorized provider credentials. Macro announcements and contemporaneous news are unavailable without a verified source.
 - Long-running jobs still run within the request path with client loading states and bounded per-model timeouts. Durable task cancellation and restart recovery are incomplete.
 - The small controlled benchmark and the absence of an approved measured candidate limit live activation verification. API control transitions are covered using test-only paired records.
@@ -191,3 +191,13 @@ The Windows launcher binds the API and development frontend to loopback and reco
 The full regression run passed 242 tests. The source-only profile passed 228 tests with 14 local-data tests deselected. Edge verified the landing page and five application routes. A historical replay used the configured Qwen executor and Gemma reviewer and recorded a `FLAG` verdict. The browser backtest used 246 observations and produced 10 simulated trades. Paper cash and holdings stayed unchanged.
 
 The clean-install prompt contains the HIVE name and has its own SHA-256 digest. Existing approved prompts, evidence packets, and benchmark records keep their original bytes and digests. The model-setting aliases and saved browser draft key are temporary compatibility paths.
+
+## SQLite integrity stabilization
+
+The original database, verified backup, and migrated copy all passed `PRAGMA integrity_check` and contained the same 58,533 rows. `PRAGMA foreign_key_check` reported 46 historical risk decisions referencing 42 missing orders. Six other decisions predate the current orders with those IDs, which is consistent with ID reuse. Earlier application connections left SQLite foreign-key enforcement off. The surviving data establishes the missing-parent and reuse patterns, though it does not identify the exact operation that removed the orders.
+
+Private archival copies contain exact order and decision matches for 24 of the orphaned decisions. Restoring those orders to the current book could reopen old proposals or relink unrelated decisions that share IDs. The remaining 22 have no verified parent in the examined copies. The original rows and their backup remain intact. This release applies no historical row repair.
+
+New application and Alembic connections enable foreign-key enforcement. The paper broker allocates SQLite order IDs above retained risk-decision references, rejects unregistered instruments, and requires an approving decision recorded for the current order before settlement. Normal operations and restart kept the migrated copy at 46 violations, with no new findings. Fresh initialization and the same order operations yielded zero violations.
+
+On 19 November 2026, all 247 backend tests passed. The source-only run passed 233 tests with 14 local-data tests deselected. Edge verified six routes, startup and shutdown, and a historical replay using both configured local models. The reviewer returned `FLAG`. The historical backtest covered 246 observations and 10 simulated trades without changing the paper portfolio. The exchange was closed during verification, so live provider-backed settlement remains unverified.

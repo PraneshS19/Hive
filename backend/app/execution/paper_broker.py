@@ -7,6 +7,7 @@ from app.core.config import settings
 from app.core.errors import OrderExecutionError
 from app.db.models import (
     Account,
+    Asset,
     Execution,
     LedgerEntry,
     Order,
@@ -17,7 +18,7 @@ from app.db.models import (
 from app.market.dhan_adapter import dhan_live_feed
 from app.market.session_calendar import is_market_session_active
 from app.risk.engine import risk_engine
-from sqlalchemy import text
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import Session
 
 
@@ -66,6 +67,8 @@ class PaperBroker:
         """
         symbol = symbol.upper()
         side = side.upper()
+        if db.get(Asset, symbol) is None:
+            raise OrderExecutionError(f"Unknown instrument '{symbol}'.")
 
         account = db.query(Account).first()
         if not account:
@@ -126,6 +129,13 @@ class PaperBroker:
             reason=f"[SIMULATION] {risk_reason}" if scenario_type else (risk_reason if not reason else f"{risk_reason} {reason}".strip()),
             created_at=datetime.now(UTC)
         )
+        if db.get_bind().dialect.name == "sqlite":
+            # Allocate in the INSERT so concurrent writes cannot claim the same ID.
+            # Historical decisions can still reference deleted orders on upgraded databases.
+            order.id = func.max(
+                func.coalesce(select(func.max(Order.id)).scalar_subquery(), 0),
+                func.coalesce(select(func.max(RiskDecision.order_id)).scalar_subquery(), 0),
+            ) + 1
         db.add(order)
         db.flush()
 
@@ -296,8 +306,13 @@ class PaperBroker:
         if not account:
             raise OrderExecutionError("Simulation account not found.")
 
-        risk_dec = db.query(RiskDecision).filter(RiskDecision.order_id == order.id).first()
-        approved_qty = risk_dec.approved_qty if risk_dec else order.requested
+        risk_dec = db.query(RiskDecision).filter(
+            RiskDecision.order_id == order.id,
+            RiskDecision.timestamp >= order.created_at,
+        ).order_by(RiskDecision.timestamp, RiskDecision.id).first()
+        if not risk_dec or risk_dec.outcome not in ("APPROVED", "RESIZED"):
+            raise OrderExecutionError(f"Order #{order_id} has no applicable approving risk decision.")
+        approved_qty = risk_dec.approved_qty
         if approved_qty <= 0:
             raise OrderExecutionError(f"Cannot execute order #{order_id} with approved quantity 0.")
 

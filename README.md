@@ -128,7 +128,7 @@ HIVE can use a separately configured RAMM-compatible endpoint. The optional loca
 
 Automated model failure and lifecycle tests use explicit fixtures. Live model trials and browser verification should be recorded separately. See [engineering verification](docs/IMPLEMENTATION_STATUS.md) for the checked workflows, environment, and limitations.
 
-GitHub withdrew Picomatch advisory `GHSA-fc5q-39xc-vjpf` on November 18, 2026. The full npm audit still reports four high-severity entries tied to it. The production-only audit reports zero vulnerabilities. The owner accepted the exception on November 18, 2026 for trusted local development and builds and deployment of compiled static frontend assets. See the [release security assessment](docs/RELEASE_SECURITY_ASSESSMENT.md) for the dependency paths, constraints, and remediation plan.
+GitHub withdrew Picomatch advisory `GHSA-fc5q-39xc-vjpf` on November 18, 2026. Both npm audit profiles returned zero findings on November 19 with the same dependency lockfile. The owner-approved exception still covers only trusted local development and builds and deployment of compiled static frontend assets. See the [release security assessment](docs/RELEASE_SECURITY_ASSESSMENT.md) for the dependency paths, constraints, and remediation plan.
 
 ## Licensing
 
